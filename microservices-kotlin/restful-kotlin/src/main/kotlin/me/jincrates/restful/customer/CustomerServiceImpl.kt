@@ -8,7 +8,7 @@ class CustomerServiceImpl : CustomerService {
     companion object {
         private val initialCustomers = arrayOf(
             Customer(1, "Kotlin"),
-            Customer(2, "Spring"),
+            Customer(2, "Spring", Customer.Telephone("+84", "43218765")),
             Customer(3, "Microservice", Customer.Telephone("+83", "12345678")))
     }
     val customers = ConcurrentHashMap<Int, Customer>(initialCustomers.associateBy(Customer::id))

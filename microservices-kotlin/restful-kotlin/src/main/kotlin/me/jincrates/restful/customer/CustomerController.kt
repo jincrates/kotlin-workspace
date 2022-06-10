@@ -1,5 +1,6 @@
 package me.jincrates.restful.customer
 
+import me.jincrates.restful.error.CustomerNotFoundException
 import me.jincrates.restful.error.ErrorResponse
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -20,13 +21,12 @@ class CustomerController {
     private lateinit var customerService: CustomerService
 
     @GetMapping(value = arrayOf("/customer/{id}"))
-    fun getCustomer(@PathVariable id: Int) : ResponseEntity<Any> {
-        val customer = customerService.getCustomer(id);
-        return if (customer != null) {
+    fun getCustomer(@PathVariable id: Int): ResponseEntity<Any> {
+        val customer = customerService.getCustomer(id)
+        return if (customer != null)
             ResponseEntity(customer, HttpStatus.OK)
-        } else {
-            ResponseEntity(ErrorResponse("Customer Not Found", "customer '$id' not found"), HttpStatus.NOT_FOUND);
-        }
+        else
+            ResponseEntity(ErrorResponse("Customer Not Found", "customer '$id' not found"), HttpStatus.NOT_FOUND)
     }
 
     @PostMapping(value = arrayOf("/customer/"))

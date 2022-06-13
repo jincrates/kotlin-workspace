@@ -3,6 +3,7 @@ package me.jincrates.reactivekotlin.customer
 import org.springframework.stereotype.Component
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
+import reactor.kotlin.core.publisher.toFlux
 import reactor.kotlin.core.publisher.toMono
 import java.util.concurrent.ConcurrentHashMap
 
@@ -19,7 +20,7 @@ class CustomerServiceImpl : CustomerService {
 
     override fun getCustomer(id: Int) = customers[id]?.toMono()
 
-    override fun searchCustomers(nameFilter: String): List<Customer> = customers.filter {
+    override fun searchCustomers(nameFilter: String): Flux<Customer> = customers.filter {
         it.value.name.contains(nameFilter, true)
-    }.map(Map.Entry<Int, Customer>::value).toList()
+    }.map(Map.Entry<Int, Customer>::value).toFlux()
 }

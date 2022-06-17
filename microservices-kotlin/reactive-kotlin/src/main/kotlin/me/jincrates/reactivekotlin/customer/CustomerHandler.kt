@@ -17,15 +17,19 @@ class CustomerHandler(val customerService: CustomerService) {
             .flatMap { ok().body(fromObject(it)) }
             .switchIfEmpty(status(HttpStatus.NOT_FOUND).build())
 
+    fun create(serverRequest: ServerRequest) =
+        customerService.createCustomer(serverRequest.bodyToMono()).flatMap {
+            created(URI.create("/customer/${it.id}")).build()
+        }
+
+    fun delete(serverRequest: ServerRequest) =
+        customerService.deleteCustomer(serverRequest.pathVariable("id").toInt())
+            .flatMap {
+                if (it) ok().build()
+                else status(HttpStatus.NOT_FOUND).build()
+            }
+
     fun search(serverRequest: ServerRequest) =
         ok().body(customerService.searchCustomers(serverRequest.queryParam("nameFilter")
             .orElse("")), Customer::class.java)
-
-    fun create(serverRequest: ServerRequest) =
-        customerService.createCustomer(serverRequest.bodyToMono()).flatMap {
-            created(URI.create("/functional/customer/${it.id}")).build()
-        }.onErrorResume(Exception::class) {
-            badRequest().body(fromObject(ErrorResponse("error creating customer",
-                it.message ?: "error")))
-        }
 }

@@ -1,0 +1,7 @@
+spring:
+    application:
+        name: "greetings"
+
+microservice:
+    example:
+        greetings: "hello from config server"

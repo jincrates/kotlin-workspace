@@ -1,7 +1,10 @@
 spring:
     application:
         name: "greetings"
-
 microservice:
     example:
         greetings: "hello from config server"
+eureka:
+    client:
+        healthcheck:
+            enabled: true

@@ -1,6 +1,8 @@
 package me.jincrates.kopringmvc.controller.post
 
+import me.jincrates.kopringmvc.model.http.UserRequest
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RestController
@@ -19,5 +21,15 @@ class PostApiController {
         return "request-mapping"
     }
 
+    // object mapper
+    // json -> object
+    // object -> json
+    @PostMapping("/post-mapping/object")
+    fun postMappingObject(@RequestBody userRequest: UserRequest): UserRequest {
+        //json -> object
+        println(userRequest)
+        //object -> json
+        return userRequest
+    }
 
 }

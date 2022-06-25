@@ -1,6 +1,6 @@
-package me.jincrates.kopringmvc.controller.response
+package me.jincrates.kopringmvc.example.controller.response
 
-import me.jincrates.kopringmvc.model.http.UserRequest
+import me.jincrates.kopringmvc.example.model.http.UserRequest
 import org.apache.coyote.Response
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

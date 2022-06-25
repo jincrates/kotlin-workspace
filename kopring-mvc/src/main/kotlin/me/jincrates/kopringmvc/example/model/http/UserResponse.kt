@@ -1,11 +1,11 @@
-package me.jincrates.kopringmvc.model.http
+package me.jincrates.kopringmvc.example.model.http
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.PropertyNamingStrategy
 import com.fasterxml.jackson.databind.annotation.JsonNaming
 
 data class UserResponse(
-    var result: Result ?= null,
+    var result: Result?= null,
     var description: String ?= null,
     var user: MutableList<UserRequest> ?= null
 )

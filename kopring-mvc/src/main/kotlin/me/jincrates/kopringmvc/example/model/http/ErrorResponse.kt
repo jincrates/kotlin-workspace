@@ -1,4 +1,4 @@
-package me.jincrates.kopringmvc.model.http
+package me.jincrates.kopringmvc.example.model.http
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import java.time.LocalDateTime

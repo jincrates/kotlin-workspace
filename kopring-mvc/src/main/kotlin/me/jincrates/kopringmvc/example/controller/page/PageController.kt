@@ -1,6 +1,6 @@
-package me.jincrates.kopringmvc.controller.page
+package me.jincrates.kopringmvc.example.controller.page
 
-import me.jincrates.kopringmvc.model.http.UserRequest
+import me.jincrates.kopringmvc.example.model.http.UserRequest
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.ResponseBody

@@ -1,8 +1,8 @@
-package me.jincrates.kopringmvc.controller.exception
+package me.jincrates.kopringmvc.example.controller.exception
 
-import me.jincrates.kopringmvc.model.http.ErrorResponse
-import me.jincrates.kopringmvc.model.http.Error
-import me.jincrates.kopringmvc.model.http.UserRequest
+import me.jincrates.kopringmvc.example.model.http.ErrorResponse
+import me.jincrates.kopringmvc.example.model.http.Error
+import me.jincrates.kopringmvc.example.model.http.UserRequest
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.BindingResult

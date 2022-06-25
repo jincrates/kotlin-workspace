@@ -1,9 +1,9 @@
-package me.jincrates.kopringmvc.model.http
+package me.jincrates.kopringmvc.example.model.http
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.PropertyNamingStrategy
 import com.fasterxml.jackson.databind.annotation.JsonNaming
-import me.jincrates.kopringmvc.annotation.StringFormatDateTime
+import me.jincrates.kopringmvc.example.annotation.StringFormatDateTime
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import javax.validation.constraints.AssertTrue

@@ -1,8 +1,8 @@
-package me.jincrates.kopringmvc.controller.put
+package me.jincrates.kopringmvc.example.controller.put
 
-import me.jincrates.kopringmvc.model.http.Result
-import me.jincrates.kopringmvc.model.http.UserRequest
-import me.jincrates.kopringmvc.model.http.UserResponse
+import me.jincrates.kopringmvc.example.model.http.Result
+import me.jincrates.kopringmvc.example.model.http.UserRequest
+import me.jincrates.kopringmvc.example.model.http.UserResponse
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.BindingResult
 import org.springframework.validation.FieldError

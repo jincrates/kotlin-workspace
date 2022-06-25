@@ -1,7 +1,7 @@
-package me.jincrates.kopringmvc.advice
+package me.jincrates.kopringmvc.example.advice
 
-import me.jincrates.kopringmvc.controller.exception.ExceptionApiController
-import me.jincrates.kopringmvc.controller.put.PutApiController
+import me.jincrates.kopringmvc.example.controller.exception.ExceptionApiController
+import me.jincrates.kopringmvc.example.controller.put.PutApiController
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ExceptionHandler

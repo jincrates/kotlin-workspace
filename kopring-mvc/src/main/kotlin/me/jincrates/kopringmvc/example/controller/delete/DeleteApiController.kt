@@ -1,4 +1,4 @@
-package me.jincrates.kopringmvc.controller.delete
+package me.jincrates.kopringmvc.example.controller.delete
 
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.DeleteMapping

@@ -1,6 +1,6 @@
-package me.jincrates.kopringmvc.controller.post
+package me.jincrates.kopringmvc.example.controller.post
 
-import me.jincrates.kopringmvc.model.http.UserRequest
+import me.jincrates.kopringmvc.example.model.http.UserRequest
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping

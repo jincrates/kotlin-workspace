@@ -1,7 +1,7 @@
-package me.jincrates.kopringmvc.controller.exception
+package me.jincrates.kopringmvc.example.controller.exception
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import me.jincrates.kopringmvc.model.http.UserRequest
+import me.jincrates.kopringmvc.example.model.http.UserRequest
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc

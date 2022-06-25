@@ -1,6 +1,6 @@
-package me.jincrates.kopringmvc.controller.get
+package me.jincrates.kopringmvc.example.controller.get
 
-import me.jincrates.kopringmvc.model.http.UserRequest
+import me.jincrates.kopringmvc.example.model.http.UserRequest
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping

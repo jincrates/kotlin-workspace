@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 
 //스프링에서 일어나는 모든 예외를 처리할 수 있다.
 //basePackageClasses : 적용하려는 Controller를 지정할 수 있다.
+//@RestControllerAdvice
 @RestControllerAdvice(basePackageClasses = [PutApiController::class])
 class GlobalControllerAdvice {
 

@@ -42,8 +42,8 @@ class TodoRepositoryImpl: TodoRepository  {
         TODO("Not yet implemented")
     }
 
-    override fun findOne(index: Int): Todo {
-        TODO("Not yet implemented")
+    override fun findOne(index: Int): Todo? {
+        return todoDatabase.todoList.first { it.index == index }
     }
 
     override fun findAll(): MutableList<Todo> {

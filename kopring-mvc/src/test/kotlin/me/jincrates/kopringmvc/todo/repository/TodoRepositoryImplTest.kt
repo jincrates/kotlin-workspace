@@ -31,6 +31,30 @@ class TodoRepositoryImplTest {
         Assertions.assertEquals("테스트 설명", result.description)
         Assertions.assertNotNull(result.createdAt)
         Assertions.assertNotNull(result.updatedAt)
+    }
 
+    @Test
+    fun saveAllTest() {
+        val todoList = mutableListOf(
+            Todo().apply {
+                this.title = "테스트 일정1"
+                this.description = "테스트 설명1"
+                this.schedule = LocalDateTime.now()
+            },
+            Todo().apply {
+                this.title = "테스트 일정2"
+                this.description = "테스트 설명2"
+                this.schedule = LocalDateTime.now()
+            },
+            Todo().apply {
+                this.title = "테스트 일정3"
+                this.description = "테스트 설명3"
+                this.schedule = LocalDateTime.now()
+            }
+        )
+
+        val result = todoRepositoryImpl.saveAll(todoList)
+
+        Assertions.assertEquals(true, result)
     }
 }

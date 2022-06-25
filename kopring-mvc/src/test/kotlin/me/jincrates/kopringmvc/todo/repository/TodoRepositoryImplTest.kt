@@ -36,11 +36,11 @@ class TodoRepositoryImplTest {
 
         val result = todoRepositoryImpl.save(todo)
 
-        assertEquals(1, result.index)
-        assertEquals("테스트 일정", result.title)
-        assertEquals("테스트 설명", result.description)
-        assertNotNull(result.createdAt)
-        assertNotNull(result.updatedAt)
+        assertEquals(1, result?.index)
+        assertEquals("테스트 일정", result?.title)
+        assertEquals("테스트 설명", result?.description)
+        assertNotNull(result?.createdAt)
+        assertNotNull(result?.updatedAt)
     }
 
     @Test
@@ -94,5 +94,28 @@ class TodoRepositoryImplTest {
 
         assertNotNull(result)
         assertEquals("테스트 일정2", result?.title)
+    }
+
+    @Test
+    fun updateTest() {
+        val todo = Todo().apply {
+            this.title = "테스트 일정"
+            this.description = "테스트 설명"
+            this.schedule = LocalDateTime.now()
+        }
+        val insertTodo = todoRepositoryImpl.save(todo)
+
+        val newTodo = Todo().apply {
+            this.index = insertTodo?.index
+            this.title = "업데이트 일정"
+            this.description = "업데이트 설명"
+            this.schedule = LocalDateTime.now()
+        }
+        val result = todoRepositoryImpl.save(newTodo)
+
+        assertNotNull(result)
+        assertEquals(insertTodo?.index, result?.index)
+        assertEquals("업데이트 일정", result?.title)
+        assertEquals("업데이트 설명", result?.description)
     }
 }

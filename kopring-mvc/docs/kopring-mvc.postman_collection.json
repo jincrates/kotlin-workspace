@@ -7,178 +7,561 @@
 	},
 	"item": [
 		{
-			"name": "GET",
+			"name": "EXAMPLE",
 			"item": [
 				{
-					"name": "hello",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/hello",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"hello"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "path-variable",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/get-mapping/path-variable/jincrates/29",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"get-mapping",
-								"path-variable",
-								"jincrates",
-								"29"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "query-param",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/get-mapping/query-param?name=jincrates&age=29",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"get-mapping",
-								"query-param"
-							],
-							"query": [
-								{
-									"key": "name",
-									"value": "jincrates"
-								},
-								{
-									"key": "age",
-									"value": "29"
+					"name": "EXCEPTION",
+					"item": [
+						{
+							"name": "Hello",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/exception/hello",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"exception",
+										"hello"
+									]
 								}
-							]
+							},
+							"response": []
+						},
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/exception?name=jincrates&age=5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"exception"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "jincrates"
+										},
+										{
+											"key": "age",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Post",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"jincrates\",\n    \"age\": 20,\n    \"email\": \"94jingyu@gmail.com\",\n    \"address\": \"서울시 강서구\",\n    \"phoneNumber\": \"010-1234-5678\",\n    \"createdAt\": \"2022-06-25 09:10:00\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/exception",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"exception"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "query-param-object",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/get-mapping/query-param/object?name=jincrates&age=29&email=94jingyu@gmail.com&address=seoul",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"get-mapping",
-								"query-param",
-								"object"
-							],
-							"query": [
-								{
-									"key": "name",
-									"value": "jincrates"
-								},
-								{
-									"key": "age",
-									"value": "29"
-								},
-								{
-									"key": "email",
-									"value": "94jingyu@gmail.com"
-								},
-								{
-									"key": "address",
-									"value": "seoul"
+					"name": "RESPONSE-ENTITY",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/response",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"response"
+									]
 								}
-							]
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/response/10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"response",
+										"10"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Post",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"jincrates\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/response",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"response"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Put",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"jincrates\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/response",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"response"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "query-param-map",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/get-mapping/query-param/map?name=jincrates&age=29&email=94jingyu@gmail.com&address=seoul&phone-number=1234",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"get-mapping",
-								"query-param",
-								"map"
-							],
-							"query": [
-								{
-									"key": "name",
-									"value": "jincrates"
-								},
-								{
-									"key": "age",
-									"value": "29"
-								},
-								{
-									"key": "email",
-									"value": "94jingyu@gmail.com"
-								},
-								{
-									"key": "address",
-									"value": "seoul"
-								},
-								{
-									"key": "phone-number",
-									"value": "1234"
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "delete-mapping",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/delete-mapping?name=jincates&age=21",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"delete-mapping"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "jincates"
+										},
+										{
+											"key": "age",
+											"value": "21"
+										}
+									]
 								}
-							]
+							},
+							"response": []
+						},
+						{
+							"name": "delete-mapping-path",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/delete-mapping/name/jincates/age/19",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"delete-mapping",
+										"name",
+										"jincates",
+										"age",
+										"19"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "put-mapping",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/put-mapping",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"put-mapping"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "put-mapping-object",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"jincrates\",\n    \"age\": -1,\n    \"email\": \"94jingyugmail.com\",\n    \"phoneNumber\": \"0101-1234-5678\",\n    \"createdAt\": \"2022-06-25 09:10:00\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/put-mapping/object",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"put-mapping",
+										"object"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "post-mapping",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/post-mapping",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"post-mapping"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "request-mapping",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/request-mapping",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"request-mapping"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "post-mapping-object",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"jincrates\",\n    \"age\": 29,\n    \"email\": \"94jingyu@gmail.com\",\n    \"phone_number\": \"01012345678\",\n    \"address\": \"서울시 강서구\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/post-mapping/object",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"post-mapping",
+										"object"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "hello",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/hello",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"hello"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "path-variable",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/get-mapping/path-variable/jincrates/29",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"get-mapping",
+										"path-variable",
+										"jincrates",
+										"29"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "query-param",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/get-mapping/query-param?name=jincrates&age=29",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"get-mapping",
+										"query-param"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "jincrates"
+										},
+										{
+											"key": "age",
+											"value": "29"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "query-param-object",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/get-mapping/query-param/object?name=jincrates&age=29&email=94jingyu@gmail.com&address=seoul",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"get-mapping",
+										"query-param",
+										"object"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "jincrates"
+										},
+										{
+											"key": "age",
+											"value": "29"
+										},
+										{
+											"key": "email",
+											"value": "94jingyu@gmail.com"
+										},
+										{
+											"key": "address",
+											"value": "seoul"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "query-param-map",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/get-mapping/query-param/map?name=jincrates&age=29&email=94jingyu@gmail.com&address=seoul&phone-number=1234",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"get-mapping",
+										"query-param",
+										"map"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "jincrates"
+										},
+										{
+											"key": "age",
+											"value": "29"
+										},
+										{
+											"key": "email",
+											"value": "94jingyu@gmail.com"
+										},
+										{
+											"key": "address",
+											"value": "seoul"
+										},
+										{
+											"key": "phone-number",
+											"value": "1234"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
 		{
-			"name": "POST",
+			"name": "TODO",
 			"item": [
 				{
-					"name": "post-mapping",
+					"name": "read",
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/post-mapping",
+							"raw": "http://localhost:8080/api/todo?index=3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -186,19 +569,25 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"post-mapping"
+								"todo"
+							],
+							"query": [
+								{
+									"key": "index",
+									"value": "3"
+								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "request-mapping",
+					"name": "delete",
 					"request": {
-						"method": "POST",
+						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/request-mapping",
+							"raw": "http://localhost:8080/api/todo/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -206,20 +595,21 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"request-mapping"
+								"todo",
+								"2"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "post-mapping-object",
+					"name": "create",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"jincrates\",\n    \"age\": 29,\n    \"email\": \"94jingyu@gmail.com\",\n    \"phone_number\": \"01012345678\",\n    \"address\": \"서울시 강서구\"\n\n}",
+							"raw": "{\n    \"title\": \"테스트\",\n    \"description\": \"테스트\",\n    \"schedule\": \"2022-06-26 15:09:00\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -227,7 +617,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/post-mapping/object",
+							"raw": "http://localhost:8080/api/todo",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -235,46 +625,20 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"post-mapping",
-								"object"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "PUT",
-			"item": [
-				{
-					"name": "put-mapping",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/put-mapping",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"put-mapping"
+								"todo"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "put-mapping-object",
+					"name": "update",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"jincrates\",\n    \"age\": 29,\n    \"email\": \"94jingyu@gmail.com\",\n    \"phoneNumber\": \"010-1234-5678\",\n    \"address\": \"서울시 강서구\"\n\n}",
+							"raw": "{\n    \"index\": 3,\n    \"title\": \"테스트3\",\n    \"description\": \"테스트3\",\n    \"schedule\": \"2022-06-26 22:22:00\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -282,7 +646,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/put-mapping/object",
+							"raw": "http://localhost:8080/api/todo",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -290,18 +654,13 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"put-mapping",
-								"object"
+								"todo"
 							]
 						}
 					},
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "DELETE",
-			"item": []
 		}
 	]
 }

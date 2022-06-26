@@ -1,6 +1,6 @@
-package me.jincrates.kopringmvc.todo.validator
+package me.jincrates.kopringmvc.todo.domain.validator
 
-import me.jincrates.kopringmvc.example.annotation.StringFormatDateTime
+import me.jincrates.kopringmvc.todo.domain.annotation.StringFormatDateTime
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import javax.validation.ConstraintValidator

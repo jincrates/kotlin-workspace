@@ -129,4 +129,19 @@ class BookRepositoryTest {
         assertEquals("책세상 업데이트", result.publisher)
         assertEquals(99, result.quantity)
     }
+
+    @Test
+    fun deleteByIdTest() {
+        val bookList = makeBookList()
+        bookRepository.saveAll(bookList)
+
+        val beforeCnt = bookRepository.findAll().size
+        bookRepository.deleteById(2L)
+
+        val afterCnt = bookRepository.findAll().size
+        println(bookRepository.existsById(2L))
+
+        assertEquals(false, bookRepository.existsById(2L))
+        assertEquals(beforeCnt - 1, afterCnt)
+    }
 }

@@ -1,5 +1,6 @@
 package me.jincrates.bookmanager.web.http
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import me.jincrates.bookmanager.common.annotation.StringFormatDateTime
 import me.jincrates.bookmanager.domain.books.Book
 import org.springframework.data.annotation.CreatedBy
@@ -12,17 +13,20 @@ class BookDto(
     var author: String?= null,
     var publisher: String?= null,
 
+    @JsonProperty("publication_date")
     @field: StringFormatDateTime(pattern = "yyyy-MM-dd HH:mm:ss", message = "yyyy-MM-dd HH:mm:ss 포맷이 맞지 않습니다.")
     var publicationDate: String?= null,
 
     var isbn: String?= null,
+
+    @JsonProperty("image_path")
     var imagePath: String?= null,
     var quantity: Int?= null,
 
-    var createdAt: LocalDateTime?= null,
-    var updatedAt: LocalDateTime?= null,
-    var createdBy: String?= null,
-    var updatedBy: String?= null
+//    var createdAt: LocalDateTime?= null,
+//    var updatedAt: LocalDateTime?= null,
+//    var createdBy: String?= null,
+//    var updatedBy: String?= null
 )
 
 // 코틀린 확장 함수

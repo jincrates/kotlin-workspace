@@ -48,8 +48,10 @@ class BookService(
     }
 
     // D
-    fun delete(id: Long) {
-        return bookRepository.deleteById(id)
+    fun delete(id: Long): Boolean {
+        bookRepository.deleteById(id)
+        //existsById(지운 id가 존재하는가)가 false면 정상적으로 지워진 것이기에 true를 리턴하도록 했다.
+        return !bookRepository.existsById(id)
     }
 
 }

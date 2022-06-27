@@ -44,4 +44,21 @@ class BookServiceTest {
         assertEquals("9791159313554", result?.isbn)
         assertEquals(10, result?.quantity)
     }
+
+    fun readTest() {
+
+    }
+
+    fun readAll() {
+
+    }
+
+    fun update() {
+
+    }
+
+    fun delete() {
+
+    }
+
 }

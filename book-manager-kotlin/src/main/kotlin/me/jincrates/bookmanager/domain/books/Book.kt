@@ -17,7 +17,7 @@ data class Book(
     var author: String ?= null,
     var publisher: String ?= null,
 
-    @field: StringFormatDateTime
+    @field: StringFormatDateTime(pattern = "yyyy-MM-dd HH:mm:ss", message = "yyyy-MM-dd HH:mm:ss 포맷이 맞지 않습니다.")
     var publicationDate: String ?= null,
 
     var isbn: String ?= null,

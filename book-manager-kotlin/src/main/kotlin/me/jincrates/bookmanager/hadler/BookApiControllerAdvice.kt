@@ -60,6 +60,7 @@ class BookApiControllerAdvice {
         request: HttpServletRequest,
         errorMessage: String
     ): ErrorResponse {
+        //1. 에러 분석
         val errors = mutableListOf<Error>()
 
         e.bindingResult.allErrors.forEach {
@@ -82,6 +83,7 @@ class BookApiControllerAdvice {
             this.timestamp = LocalDateTime.now()
             this.errors = errors
         }
+
         return errorResponse
     }
 }

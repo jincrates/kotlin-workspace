@@ -2,7 +2,7 @@
 
 ## 목적
 
-코프링(Kotlin + Springboot)와 JPA를 활용하여 
+코프링(Kotlin + Spring Boot)과 JPA를 활용하여 
 사내 도서를 관리하는 프로그램을 만들어보자.
 
 ## 사용자 요구사항

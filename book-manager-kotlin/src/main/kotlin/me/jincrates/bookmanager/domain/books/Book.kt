@@ -12,7 +12,7 @@ data class Book(
 
     //TODO validation 나중에 작성하자
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Int ?= null,
+    var id: Long ?= null,
     var title: String ?= null,
     var author: String ?= null,
     var publisher: String ?= null,

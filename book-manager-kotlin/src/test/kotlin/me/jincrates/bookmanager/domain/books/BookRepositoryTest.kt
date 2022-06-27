@@ -1,6 +1,5 @@
 package me.jincrates.bookmanager.domain.books
 
-import me.jincrates.bookmanager.config.WebMvcConfig
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -8,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.TestPropertySource
 import org.springframework.test.context.junit.jupiter.SpringExtension
-import org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath
 
 @ExtendWith(SpringExtension::class)
 @TestPropertySource(properties = ["spring.config.location=classpath:application.yml"])
@@ -20,9 +18,8 @@ class BookRepositoryTest {
     @Autowired
     lateinit var bookRepository: BookRepository
 
-    @Test
-    fun saveTest() {
-        val book = Book().apply {
+    fun makeBook(): Book {
+        return Book().apply {
             this.title = "철학적 탐구"
             this.author = "루트비히 비트겐슈타인"
             this.publisher = "책세상"
@@ -30,22 +27,10 @@ class BookRepositoryTest {
             this.isbn = "9791159313554"
             this.quantity = 10
         }
-
-        val result = bookRepository.save(book)
-        println(result)
-
-        assertNotNull(result)
-        assertEquals("철학적 탐구", result.title)
-        assertEquals("루트비히 비트겐슈타인", result.author)
-        assertEquals("책세상", result.publisher)
-        assertEquals("2019-04-05 00:00:00", result.publicationDate)
-        assertEquals("9791159313554", result.isbn)
-        assertEquals(10, result.quantity)
     }
 
-    @Test
-    fun saveAllTest() {
-        val bookList = mutableListOf(
+    fun makeBookList(): MutableList<Book> {
+        return mutableListOf(
             Book().apply {
                 this.title = "철학적 탐구"
                 this.author = "루트비히 비트겐슈타인"
@@ -71,7 +56,26 @@ class BookRepositoryTest {
                 this.quantity = 10
             },
         )
+    }
 
+    @Test
+    fun saveTest() {
+        val book = makeBook()
+        val result = bookRepository.save(book)
+        println(result)
+
+        assertNotNull(result)
+        assertEquals("철학적 탐구", result.title)
+        assertEquals("루트비히 비트겐슈타인", result.author)
+        assertEquals("책세상", result.publisher)
+        assertEquals("2019-04-05 00:00:00", result.publicationDate)
+        assertEquals("9791159313554", result.isbn)
+        assertEquals(10, result.quantity)
+    }
+
+    @Test
+    fun saveAllTest() {
+        val bookList = makeBookList()
         val result = bookRepository.saveAll(bookList)
         println(result)
 
@@ -84,4 +88,45 @@ class BookRepositoryTest {
         assertEquals(10, result[1].quantity)
     }
 
+    @Test
+    fun findByIdTest() {
+        val bookList = makeBookList()
+        bookRepository.saveAll(bookList)
+
+        val result = bookRepository.findById(3L).get()
+        println(result)
+
+        assertNotNull(result)
+        assertEquals("방법서설", result.title)
+        assertEquals("르네 데카르트", result.author)
+        assertEquals("문예출판사", result.publisher)
+        assertEquals("2022-05-30 00:00:00", result.publicationDate)
+        assertEquals("9788931022759", result.isbn)
+        assertEquals(10, result.quantity)
+    }
+
+    @Test
+    fun updateTest() {
+        val book = makeBook()
+        val insertBook = bookRepository.save(book)
+
+        val updateBook = Book().apply {
+            this.id = insertBook.id
+            this.title = "철학적 탐구 업데이트"
+            this.author = insertBook.author
+            this.publisher = "책세상 업데이트"
+            this.publicationDate = insertBook.publicationDate
+            this.isbn = insertBook.isbn
+            this.quantity = 99
+        }
+
+        val result = bookRepository.save(updateBook)
+        println(result)
+
+        assertNotNull(result)
+        assertEquals(insertBook.id, result.id)
+        assertEquals("철학적 탐구 업데이트", result.title)
+        assertEquals("책세상 업데이트", result.publisher)
+        assertEquals(99, result.quantity)
+    }
 }

@@ -15,9 +15,7 @@ class MemberService(
 
     // C
     fun create(memberDto: MemberDto): MemberDto? {
-        return memberDto.let {
-            toEntity(it)
-        }.let {
+        return toEntity(memberDto).let {
             memberRepository.save(it)
         }.let {
             MemberDto().toDto(it)
@@ -25,8 +23,30 @@ class MemberService(
     }
 
     // R
+    fun read(id: Long): MemberDto? {
+        return memberRepository.findById(id).get().let {
+            MemberDto().toDto(it)
+        }
+    }
+
+    fun readAll(): MutableList<MemberDto> {
+        return memberRepository.findAll().map {
+            MemberDto().toDto(it)
+        }.toMutableList()
+    }
 
     // U
+    fun update(memberDto: MemberDto): MemberDto? {
+        return toEntity(memberDto).let {
+            memberRepository.save(it)
+        }.let {
+            MemberDto().toDto(it)
+        }
+    }
 
     // D
+    fun delete(id: Long): Boolean {
+        memberRepository.deleteById(id)
+        return !memberRepository.existsById(id)
+    }
 }

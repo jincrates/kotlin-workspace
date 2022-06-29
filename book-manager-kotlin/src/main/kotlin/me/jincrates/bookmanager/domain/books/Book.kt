@@ -3,10 +3,7 @@ package me.jincrates.bookmanager.domain.books
 import me.jincrates.bookmanager.common.annotation.StringFormatDateTime
 import me.jincrates.bookmanager.domain.BaseEntity
 import me.jincrates.bookmanager.web.http.BookDto
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import javax.persistence.*
-import javax.validation.constraints.Min
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.PositiveOrZero
@@ -42,7 +39,7 @@ data class Book(
 ) : BaseEntity()
 
 // 코틀린 확장 함수
-fun Book.convertToEntity(dto: BookDto): Book {
+fun toEntity(dto: BookDto): Book {
     return Book().apply {
         this.id = dto.id
         this.title = dto.title
@@ -52,9 +49,5 @@ fun Book.convertToEntity(dto: BookDto): Book {
         this.isbn = dto.isbn
         this.imagePath = dto.imagePath
         this.quantity = dto.quantity
-//        this.createdAt = LocalDateTime.parse(dto.createdAt.toString(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
-//        this.updatedAt = LocalDateTime.parse(dto.updatedAt.toString(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
-//        this.createdBy = dto.createdBy.toString()
-//        this.updatedBy = dto.updatedBy.toString()
     }
 }

@@ -36,15 +36,10 @@ class BookDto(
     @field: NotNull(message = "수량을 입력하지 않았습니다.")
     @field: PositiveOrZero(message = "수량은 0 이상이어야 합니다.")  // 양수 또는 0이어야 합니다.
     var quantity: Int?= null,
-
-//    var createdAt: LocalDateTime?= null,
-//    var updatedAt: LocalDateTime?= null,
-//    var createdBy: String?= null,
-//    var updatedBy: String?= null
 )
 
 // 코틀린 확장 함수
-fun BookDto.convertToDto(entity: Book): BookDto {
+fun BookDto.toDto(entity: Book): BookDto {
     return BookDto().apply {
         this.id = entity.id
         this.title = entity.title
@@ -54,9 +49,5 @@ fun BookDto.convertToDto(entity: Book): BookDto {
         this.isbn = entity.isbn
         this.imagePath = entity.imagePath
         this.quantity = entity.quantity
-//        this.createdAt = entity.createdAt
-//        this.updatedAt = entity.updatedAt
-//        this.createdBy = entity.createdBy
-//        this.updatedBy = entity.updatedBy
     }
 }

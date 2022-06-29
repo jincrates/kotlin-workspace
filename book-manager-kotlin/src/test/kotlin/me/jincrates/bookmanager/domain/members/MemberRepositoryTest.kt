@@ -17,9 +17,8 @@ class MemberRepositoryTest {
     @Autowired
     lateinit var memberRepository: MemberRepository
 
-    @Test
-    fun saveTest() {
-        val member = Member().apply {
+    fun createMember(): Member {
+        return Member().apply {
             this.name = "진크"
             this.email = "jincrates@email.com"
             this.password = "a12345!"
@@ -28,7 +27,11 @@ class MemberRepositoryTest {
             this.role = MemberRole.USER
             this.status = Status.ACTIVE
         }
+    }
 
+    @Test
+    fun saveTest() {
+        val member = createMember()
         val result = memberRepository.save(member)
         println(result)
 
@@ -40,5 +43,31 @@ class MemberRepositoryTest {
         assertEquals("010-1111-2222", result.phoneNumber)
         assertEquals(MemberRole.USER, result.role)
         assertEquals(Status.ACTIVE, result.status)
+    }
+
+    @Test
+    fun updateTest() {
+        val member = createMember();
+        val insertMember = memberRepository.save(member)
+
+        val updateMember = Member().apply {
+            this.id = insertMember.id
+            this.name = "진크라테스"
+            this.email = insertMember.email
+            this.password = insertMember.password
+            this.joinDate = insertMember.joinDate
+            this.phoneNumber = "010-3333-4444"
+            this.role = MemberRole.ADMIN
+            this.status = Status.INACTIVE
+        }
+
+        val result = memberRepository.save(updateMember)
+        println(result)
+
+        assertNotNull(result)
+        assertEquals(insertMember.id, result.id)
+        assertEquals("진크라테스", result.name)
+        assertEquals(MemberRole.ADMIN, result.role)
+        assertEquals(Status.INACTIVE, result.status)
     }
 }

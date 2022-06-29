@@ -10,7 +10,7 @@ import javax.transaction.Transactional
 @Transactional
 @Service
 class MemberService(
-    private var memberRepository: MemberRepository
+    private val memberRepository: MemberRepository
 ) {
 
     // C

@@ -49,15 +49,15 @@ class BookServiceTest {
 
     }
 
-    fun readAll() {
+    fun readAllTest() {
 
     }
 
-    fun update() {
+    fun updateTest() {
 
     }
 
-    fun delete() {
+    fun deleteTest() {
 
     }
 

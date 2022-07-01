@@ -1,5 +1,10 @@
 # 도서관리 서비스(with Kopring + JPA)
 
+## 기술 스택
+![Generic badge](https://img.shields.io/badge/1.6.21-kotlin-7F52FF.svg)
+![Generic badge](https://img.shields.io/badge/2.7.1-SpringBoot-6DB33F.svg)
+
+
 ## 목적
 
 코프링(Kotlin + Spring Boot)과 JPA를 활용하여 
@@ -76,3 +81,7 @@
 | reserve_date | 예약일자 |
 | reserve_order | 예약순번 |
 | is_reserve | 예약여부(y/n) |
+
+
+## API Reference
+[API 문서 링크](https://github.com/jincrates/kotlin-workspace/blob/main/book-manager-kotlin/docs/apis/reference.md) 를 참조

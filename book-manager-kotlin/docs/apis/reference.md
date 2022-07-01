@@ -16,7 +16,7 @@
 | Method | URI                             | Description               | Request Body       | Response Body      | etc                    |
 |--------|---------------------------------|---------------------------|--------------------|--------------------|------------------------|
 | GET    | /api/member                     | 사용자 목록 조회           | -                  | 사용자 목록         |                        |
-| GET    | /api/member/all                 | 사요자 목록 조회           | -                  | 사용자 목록         |                        |
+| GET    | /api/member/all                 | 사용자 목록 조회           | -                  | 사용자 목록         |                        |
 | GET    | /api/member?id={id}             | 사용자 1명의 정보 조회     | -                   | 사용자 1명 정보     | id가 없으면 전체 사용자 목록 조회   |
 | POST   | /api/member                     | 사용자 생성                | MemberDto          | -                  | -                      |
 | PUT    | /api/member                     | 사용자 수정                | MemberDto          | -                  | -                      |

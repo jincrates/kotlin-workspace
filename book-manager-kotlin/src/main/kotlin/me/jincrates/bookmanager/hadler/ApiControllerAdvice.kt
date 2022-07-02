@@ -1,6 +1,8 @@
 package me.jincrates.bookmanager.hadler
 
 import me.jincrates.bookmanager.web.BookApiController
+import me.jincrates.bookmanager.web.LoanApiController
+import me.jincrates.bookmanager.web.MemberApiController
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
@@ -13,8 +15,14 @@ import org.springframework.validation.FieldError
 import java.time.LocalDateTime
 import javax.validation.ConstraintViolationException
 
-@ControllerAdvice(basePackageClasses = [BookApiController::class])
-class BookApiControllerAdvice {
+@ControllerAdvice(
+    basePackageClasses = [
+        BookApiController::class,
+        MemberApiController::class,
+        LoanApiController::class
+    ]
+)
+class ApiControllerAdvice {
 
     @ExceptionHandler(value = [RuntimeException::class])
     fun exception(e: RuntimeException): String {

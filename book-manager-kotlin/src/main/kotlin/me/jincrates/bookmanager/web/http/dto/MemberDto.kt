@@ -1,4 +1,4 @@
-package me.jincrates.bookmanager.web.http
+package me.jincrates.bookmanager.web.http.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import me.jincrates.bookmanager.common.Status
@@ -42,18 +42,20 @@ class MemberDto(
     @field: Enumerated(EnumType.STRING)
     var status: Status?= null
 
-)
-
-fun MemberDto.toDto(entity: Member): MemberDto {
-    return MemberDto().apply {
-        this.id = entity.id
-        this.name = entity.name
-        this.email = entity.email
-        this.password = entity.password
-        this.joinDate = entity.joinDate
-        this.phoneNumber = entity.phoneNumber
-        this.role = entity.role
-        this.status = entity.status
+) {
+    fun of(entity: Member): MemberDto {
+        return MemberDto().apply {
+            this.id = entity.id
+            this.name = entity.name
+            this.email = entity.email
+            this.password = entity.password
+            this.joinDate = entity.joinDate
+            this.phoneNumber = entity.phoneNumber
+            this.role = entity.role
+            this.status = entity.status
+        }
     }
 }
+
+
 

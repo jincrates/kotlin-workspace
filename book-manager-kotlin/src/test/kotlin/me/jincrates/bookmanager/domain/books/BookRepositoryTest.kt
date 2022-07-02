@@ -25,7 +25,7 @@ class BookRepositoryTest {
             this.publisher = "책세상"
             this.publicationDate = "2019-04-05 00:00:00"
             this.isbn = "9791159313554"
-            this.quantity = 10
+            this.stockNumber = 10
         }
     }
 
@@ -37,7 +37,7 @@ class BookRepositoryTest {
                 this.publisher = "책세상"
                 this.publicationDate = "2019-04-05 00:00:00"
                 this.isbn = "9791159313554"
-                this.quantity = 10
+                this.stockNumber = 10
             },
             Book().apply {
                 this.title = "말과 사물"
@@ -45,7 +45,7 @@ class BookRepositoryTest {
                 this.publisher = "민음사"
                 this.publicationDate = "2012-04-29 00:00:00"
                 this.isbn = "9788937484414"
-                this.quantity = 10
+                this.stockNumber = 10
             },
             Book().apply {
                 this.title = "방법서설"
@@ -53,7 +53,7 @@ class BookRepositoryTest {
                 this.publisher = "문예출판사"
                 this.publicationDate = "2022-05-30 00:00:00"
                 this.isbn = "9788931022759"
-                this.quantity = 10
+                this.stockNumber = 10
             },
         )
     }
@@ -70,7 +70,7 @@ class BookRepositoryTest {
         assertEquals("책세상", result.publisher)
         assertEquals("2019-04-05 00:00:00", result.publicationDate)
         assertEquals("9791159313554", result.isbn)
-        assertEquals(10, result.quantity)
+        assertEquals(10, result.stockNumber)
     }
 
     @Test
@@ -85,7 +85,7 @@ class BookRepositoryTest {
         assertEquals("민음사", result[1].publisher)
         assertEquals("2012-04-29 00:00:00", result[1].publicationDate)
         assertEquals("9788937484414", result[1].isbn)
-        assertEquals(10, result[1].quantity)
+        assertEquals(10, result[1].stockNumber)
     }
 
     @Test
@@ -102,7 +102,7 @@ class BookRepositoryTest {
         assertEquals("문예출판사", result.publisher)
         assertEquals("2022-05-30 00:00:00", result.publicationDate)
         assertEquals("9788931022759", result.isbn)
-        assertEquals(10, result.quantity)
+        assertEquals(10, result.stockNumber)
     }
 
     @Test
@@ -117,7 +117,7 @@ class BookRepositoryTest {
             this.publisher = "책세상 업데이트"
             this.publicationDate = insertBook.publicationDate
             this.isbn = insertBook.isbn
-            this.quantity = 99
+            this.stockNumber = 99
         }
 
         val result = bookRepository.save(updateBook)
@@ -127,7 +127,7 @@ class BookRepositoryTest {
         assertEquals(insertBook.id, result.id)
         assertEquals("철학적 탐구 업데이트", result.title)
         assertEquals("책세상 업데이트", result.publisher)
-        assertEquals(99, result.quantity)
+        assertEquals(99, result.stockNumber)
     }
 
     @Test

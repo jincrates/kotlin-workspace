@@ -1,9 +1,9 @@
 package me.jincrates.bookmanager.service
 
 import me.jincrates.bookmanager.domain.books.BookRepository
-import me.jincrates.bookmanager.domain.books.toEntity
-import me.jincrates.bookmanager.web.http.BookDto
-import me.jincrates.bookmanager.web.http.toDto
+import me.jincrates.bookmanager.web.http.dto.BookDto
+import me.jincrates.bookmanager.web.http.dto.of
+import me.jincrates.bookmanager.web.http.dto.toEntity
 import org.springframework.stereotype.Service
 
 @Service
@@ -18,20 +18,20 @@ class BookService(
         }.let {
             bookRepository.save(it)
         }.let {
-            BookDto().toDto(it)
+            of(it)
         }
     }
 
     // R
     fun read(id: Long): BookDto? {
         return bookRepository.findById(id).get().let {
-            BookDto().toDto(it)
+            of(it)
         }
     }
 
     fun readAll(): MutableList<BookDto> {
         return bookRepository.findAll().map {
-            BookDto().toDto(it)
+            of(it)
         }.toMutableList()
     }
 
@@ -42,7 +42,7 @@ class BookService(
         }.let {
             bookRepository.save(it)
         }.let {
-            BookDto().toDto(it)
+            of(it)
         }
     }
 

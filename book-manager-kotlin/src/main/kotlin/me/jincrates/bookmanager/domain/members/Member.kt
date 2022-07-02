@@ -4,7 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import me.jincrates.bookmanager.common.Status
 import me.jincrates.bookmanager.common.annotation.StringFormatDateTime
 import me.jincrates.bookmanager.domain.BaseEntity
-import me.jincrates.bookmanager.web.http.MemberDto
+import me.jincrates.bookmanager.web.http.dto.MemberDto
+import org.springframework.security.crypto.password.PasswordEncoder
 import javax.persistence.*
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
@@ -46,29 +47,32 @@ data class Member(
     @field: Enumerated(EnumType.STRING)
     var status: Status? = null
 
-) : BaseEntity()
+) : BaseEntity() {
 
-fun toEntity(dto: MemberDto): Member {
-    return Member().apply {
-        this.id = dto.id
-        this.name = dto.name
-        this.email = dto.email
-        this.password = dto.password
-        this.joinDate = dto.joinDate
-        this.phoneNumber = dto.phoneNumber
-        this.role = dto.role
-        this.status = dto.status
+    fun toEntity(dto: MemberDto): Member {
+        return Member().apply {
+            this.id = dto.id
+            this.name = dto.name
+            this.email = dto.email
+            this.password = dto.password
+            this.joinDate = dto.joinDate
+            this.phoneNumber = dto.phoneNumber
+            this.role = dto.role
+            this.status = dto.status
+        }
+    }
+
+    fun createMember(dto: MemberDto, passwordEncoder: PasswordEncoder): Member {
+        return Member().apply {
+            this.name = dto.name
+            this.email = dto.email
+            this.password = passwordEncoder.encode(dto.password)
+            this.joinDate = dto.joinDate
+            this.phoneNumber = dto.phoneNumber
+            this.role = MemberRole.USER
+            this.status = Status.ACTIVE
+        }
     }
 }
 
-fun createMember(dto: MemberDto): Member {
-    return Member().apply {
-        this.name = dto.name
-        this.email = dto.email
-        this.password = dto.password
-        this.joinDate = dto.joinDate
-        this.phoneNumber = dto.phoneNumber
-        this.role = MemberRole.USER
-        this.status = Status.ACTIVE
-    }
-}
+

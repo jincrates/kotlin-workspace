@@ -1,9 +1,8 @@
 package me.jincrates.bookmanager.service
 
+import me.jincrates.bookmanager.domain.members.Member
 import me.jincrates.bookmanager.domain.members.MemberRepository
-import me.jincrates.bookmanager.domain.members.toEntity
-import me.jincrates.bookmanager.web.http.MemberDto
-import me.jincrates.bookmanager.web.http.toDto
+import me.jincrates.bookmanager.web.http.dto.MemberDto
 import org.springframework.stereotype.Service
 import javax.transaction.Transactional
 
@@ -15,32 +14,34 @@ class MemberService(
 
     // C
     fun create(memberDto: MemberDto): MemberDto? {
-        return toEntity(memberDto).let {
+        return memberDto.let {
+            Member().toEntity(it)
+        }.let{
             memberRepository.save(it)
         }.let {
-            MemberDto().toDto(it)
+            MemberDto().of(it)
         }
     }
 
     // R
     fun read(id: Long): MemberDto? {
         return memberRepository.findById(id).get().let {
-            MemberDto().toDto(it)
+            MemberDto().of(it)
         }
     }
 
     fun readAll(): MutableList<MemberDto> {
         return memberRepository.findAll().map {
-            MemberDto().toDto(it)
+            MemberDto().of(it)
         }.toMutableList()
     }
 
     // U
     fun update(memberDto: MemberDto): MemberDto? {
-        return toEntity(memberDto).let {
+        return  Member().toEntity(memberDto).let {
             memberRepository.save(it)
         }.let {
-            MemberDto().toDto(it)
+            MemberDto().of(it)
         }
     }
 

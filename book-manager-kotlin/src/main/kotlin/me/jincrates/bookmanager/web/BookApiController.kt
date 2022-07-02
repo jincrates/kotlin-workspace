@@ -1,7 +1,7 @@
 package me.jincrates.bookmanager.web
 
 import me.jincrates.bookmanager.service.BookService
-import me.jincrates.bookmanager.web.http.BookDto
+import me.jincrates.bookmanager.web.http.dto.BookDto
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -48,6 +48,25 @@ class BookApiController(
     @PostMapping("")
     fun create(@Valid @RequestBody bookDto: BookDto): BookDto? {
         return bookService.create(bookDto)
+        /*
+        // 1. Response
+        return BookResponse().apply{
+            bookService.create(bookDto)
+        }.apply {
+            // 2. result
+            this.result = Result().apply {
+                this.resultCode = "OK"
+                this.resultMessage = "성공"
+            }
+        }.apply {
+            // 3. description
+            this.description = "도서가 등록되었습니다."
+        }.apply {
+            // 4. book mutable list
+            println(bookService.readAll())
+            this.book = bookService.readAll()
+        }
+        */
     }
 
     // U

@@ -1,7 +1,7 @@
 package me.jincrates.bookmanager.web
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import me.jincrates.bookmanager.web.http.BookDto
+import me.jincrates.bookmanager.web.http.dto.BookDto
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -18,7 +18,7 @@ import org.springframework.util.LinkedMultiValueMap
 
 @AutoConfigureMockMvc
 @ExtendWith(SpringExtension::class)
-@TestPropertySource(properties = ["spring.config.location=classpath:application.yml"])
+@TestPropertySource(properties = ["spring.config.location=classpath:application-test.yml"])
 @SpringBootTest
 class BookApiControllerTest {
 
@@ -65,7 +65,7 @@ class BookApiControllerTest {
             this.publisher = "책세상"
             this.publicationDate = "2019-04-05 00:00:00"
             this.isbn = "9791159313554"
-            this.quantity = 10
+            this.stockNumber = 10
         }
 
         val json = jacksonObjectMapper().writeValueAsString(bookDto)
@@ -101,7 +101,7 @@ class BookApiControllerTest {
             this.publisher = ""
             this.publicationDate = "2019-04-05 00:00:00"
             this.isbn = "9791159313554"
-            this.quantity = 10
+            this.stockNumber = 10
         }
 
         val json = jacksonObjectMapper().writeValueAsString(bookDto)

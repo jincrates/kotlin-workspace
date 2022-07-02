@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.TestPropertySource
 import org.springframework.test.context.junit.jupiter.SpringExtension
+import java.time.LocalDateTime
 
 @ExtendWith(SpringExtension::class)
 @TestPropertySource(properties = ["spring.config.location=classpath:application.yml"])
@@ -47,7 +48,7 @@ class LoanRepositoryTest {
             this.publisher = "책세상"
             this.publicationDate = "2019-04-05 00:00:00"
             this.isbn = "9791159313554"
-            this.quantity = 10
+            this.stockNumber = 10
         }
     }
 
@@ -60,12 +61,11 @@ class LoanRepositoryTest {
         memberRepository.save(member)
 
         val loanBook = Loan().apply {
-            this.book = book
+            //this.book = book
             this.member = member
-            this.fromDate = "2022-07-01 00:09:00"
-            this.toDate = "2022-07-08 00:09:00"
+            this.fromDate = LocalDateTime.now()
+            this.toDate = LocalDateTime.now().plusDays(7)
             this.isReturn = false
-            this.reason = "책 대여 테스트"
         }
 
         val result = loanRepository.save(loanBook)

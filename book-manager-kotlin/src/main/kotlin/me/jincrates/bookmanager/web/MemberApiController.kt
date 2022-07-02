@@ -1,7 +1,7 @@
 package me.jincrates.bookmanager.web
 
 import me.jincrates.bookmanager.service.MemberService
-import me.jincrates.bookmanager.web.http.MemberDto
+import me.jincrates.bookmanager.web.http.dto.MemberDto
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

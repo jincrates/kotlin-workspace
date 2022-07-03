@@ -10,7 +10,7 @@ import org.springframework.test.context.TestPropertySource
 import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @ExtendWith(SpringExtension::class)
-@TestPropertySource(properties = ["spring.config.location=classpath:application.yml"])
+@TestPropertySource(properties = ["spring.config.location=classpath:application-test.yml"])
 @SpringBootTest
 class BookServiceTest {
 

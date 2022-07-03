@@ -5,7 +5,6 @@ import me.jincrates.bookmanager.common.Status
 import me.jincrates.bookmanager.common.annotation.StringFormatDateTime
 import me.jincrates.bookmanager.domain.BaseEntity
 import me.jincrates.bookmanager.web.http.dto.MemberDto
-import org.springframework.security.crypto.password.PasswordEncoder
 import javax.persistence.*
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
@@ -62,11 +61,11 @@ data class Member(
         }
     }
 
-    fun createMember(dto: MemberDto, passwordEncoder: PasswordEncoder): Member {
+    fun createMember(dto: MemberDto): Member {
         return Member().apply {
             this.name = dto.name
             this.email = dto.email
-            this.password = passwordEncoder.encode(dto.password)
+            this.password = dto.password
             this.joinDate = dto.joinDate
             this.phoneNumber = dto.phoneNumber
             this.role = MemberRole.USER

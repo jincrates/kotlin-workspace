@@ -7,10 +7,10 @@ import me.jincrates.bookmanager.web.http.dto.MemberDto
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.test.context.TestPropertySource
 import org.springframework.test.context.junit.jupiter.SpringExtension
 
@@ -21,9 +21,6 @@ class MemberServiceTest {
 
     @Autowired
     lateinit var memberService: MemberService
-
-    @Autowired
-    lateinit var passwordEncoder: PasswordEncoder
 
     fun createMember(): Member {
         val member = MemberDto().apply {
@@ -36,11 +33,11 @@ class MemberServiceTest {
             this.status = Status.ACTIVE
         }
 
-        return Member().createMember(member, passwordEncoder)
+        return Member().createMember(member)
     }
 
     @Test
-    fun create() {
+    fun createMemberTest() {
         val member = MemberDto().of(createMember())
         val savedMember = memberService.create(member)
 
@@ -52,4 +49,6 @@ class MemberServiceTest {
         assertEquals(member.role, savedMember?.role)
         assertEquals(member.status, savedMember?.status)
     }
+
+
 }

@@ -10,7 +10,7 @@ import org.springframework.test.context.TestPropertySource
 import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @ExtendWith(SpringExtension::class)
-@TestPropertySource(properties = ["spring.config.location=classpath:application.yml"])
+@TestPropertySource(properties = ["spring.config.location=classpath:application-test.yml"])
 @SpringBootTest
 class MemberRepositoryTest {
 
@@ -44,6 +44,14 @@ class MemberRepositoryTest {
         assertEquals(MemberRole.USER, result.role)
         assertEquals(Status.ACTIVE, result.status)
     }
+
+    @Test
+    fun validateDuplicateMemberTest() {
+        //val member1 = createMember()
+        val result = memberRepository.findByEmail("jincrates@email.com")
+        println(result)
+    }
+
 
     @Test
     fun updateTest() {

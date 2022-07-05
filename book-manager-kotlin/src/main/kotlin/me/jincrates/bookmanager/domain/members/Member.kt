@@ -25,6 +25,7 @@ data class Member(
 
     @field: NotBlank(message = "이메일을 입력하지 않았습니다.")
     @field: Email
+    @Column(unique = true)
     var email: String? = null,
 
     @field: NotBlank(message = "비밀번호 입력하지 않았습니다.")

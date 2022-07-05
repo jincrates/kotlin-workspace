@@ -14,12 +14,24 @@ class MemberService(
 
     // C
     fun create(memberDto: MemberDto): MemberDto? {
+        // 중복생성 방지
+        validateDuplicateMember(memberDto)
+
         return memberDto.let {
             Member().toEntity(it)
         }.let{
             memberRepository.save(it)
         }.let {
             MemberDto().of(it)
+        }
+    }
+
+    fun validateDuplicateMember(memberDto: MemberDto) {
+        val findMember = memberRepository.findByEmail(memberDto.email!!)
+        println(findMember)
+        if (findMember != null) {
+            //throw IllegalStateException("이미 가입된 회원입니다.")
+            throw Exception("이미 가입된 회원입니다.")
         }
     }
 

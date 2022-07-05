@@ -18,8 +18,8 @@ class LoanService(
     private val loanRepository: LoanRepository
 ) {
 
-    fun loan(loanDto: LoanDto, memberId: Long): Optional<Loan>? {
-
+    // C
+    fun loan(loanDto: LoanDto, memberId: Long): Long? {
         val book = bookRepository.findById(loanDto.bookId)
         val member = memberRepository.findById(memberId)
 
@@ -30,6 +30,18 @@ class LoanService(
         val loan = Loan().createLoan(member, loanBooks)
         loanRepository.save(loan)
 
-        return loan.id?.let { loanRepository.findById(it) }
+        return loan.id
     }
+
+    // R
+    fun read(id: Long) {
+        return loanRepository.findById(id).get().let {
+
+        }
+    }
+
+
+    // U
+
+    // D
 }

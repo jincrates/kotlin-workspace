@@ -17,3 +17,16 @@ class LoanDto(
 
     var count: Int
 )
+
+
+/*
+
+{
+    "loan_id": "",
+    "from_date": "",
+    "to_date": "",
+    "is_return": "",
+    "member": ""
+
+}
+*/

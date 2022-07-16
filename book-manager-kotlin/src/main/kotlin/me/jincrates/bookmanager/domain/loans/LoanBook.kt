@@ -1,4 +1,4 @@
-package me.jincrates.bookmanager.domain.loan
+package me.jincrates.bookmanager.domain.loans
 
 import me.jincrates.bookmanager.domain.BaseEntity
 import me.jincrates.bookmanager.domain.books.Book
@@ -11,17 +11,17 @@ data class LoanBook(
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "loan_book_id")
-    var id: Long? = null,
+    private var id: Long? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id")
-    var book: Book? = null,
+    private var book: Book? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "loan_id")
-    var loan: Loan? = null,
+    private var loan: Loan? = null,
 
-    var count: Int? = null
+    private var count: Int? = null
 
 ) : BaseEntity() {
 

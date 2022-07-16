@@ -1,6 +1,7 @@
-package me.jincrates.bookmanager.domain.loan
+package me.jincrates.bookmanager.domain.loans
 
 import me.jincrates.bookmanager.domain.BaseEntity
+import me.jincrates.bookmanager.domain.books.BookStatus
 import me.jincrates.bookmanager.domain.members.Member
 import java.time.LocalDateTime
 import java.util.*
@@ -11,20 +12,23 @@ import javax.persistence.*
 data class Loan(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "loan_id")
-    var id: Long? = null,
+    private var id: Long? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
-    var member: Member? = null,
+    private var member: Member? = null,
 
-    var fromDate: LocalDateTime? = null,
+    private var fromDate: LocalDateTime? = null,
 
-    var toDate: LocalDateTime? = null,
+    private var toDate: LocalDateTime? = null,
 
-    var isReturn: Boolean ?= null,
+    private var isReturn: Boolean? = null,
+
+    @Enumerated(EnumType.STRING)
+    private var loanStatus: BookStatus? = null,
 
     @OneToMany(mappedBy = "loan", cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.LAZY)
-    var loanBooks: MutableList<LoanBook> = mutableListOf()
+    private var loanBooks: MutableList<LoanBook> = mutableListOf()
 
 ) : BaseEntity() {
 

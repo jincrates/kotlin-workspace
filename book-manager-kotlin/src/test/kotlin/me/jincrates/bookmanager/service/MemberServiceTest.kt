@@ -7,6 +7,7 @@ import me.jincrates.bookmanager.web.http.dto.MemberDto
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -37,6 +38,7 @@ class MemberServiceTest {
     }
 
     @Test
+    @DisplayName("회원가입 테스트")
     fun createMemberTest() {
         val member = MemberDto().of(createMember())
         val savedMember = memberService.create(member)
@@ -50,5 +52,6 @@ class MemberServiceTest {
         assertEquals(member.status, savedMember?.status)
     }
 
-
+    @Test
+    fun
 }

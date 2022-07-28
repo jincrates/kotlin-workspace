@@ -36,4 +36,8 @@ data class LoanBook(
     fun returnBook() {
         count?.let { this.book?.addStock(it) }
     }
+
+    fun setLoan(loan: Loan) {
+        this.loan = loan;
+    }
 }

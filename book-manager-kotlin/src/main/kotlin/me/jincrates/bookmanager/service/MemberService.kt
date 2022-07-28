@@ -27,12 +27,7 @@ class MemberService(
     }
 
     fun validateDuplicateMember(memberDto: MemberDto) {
-        val findMember = memberRepository.findByEmail(memberDto.email!!)
-        println(findMember)
-        if (findMember != null) {
-            //throw IllegalStateException("이미 가입된 회원입니다.")
-            throw Exception("이미 가입된 회원입니다.")
-        }
+        memberRepository.findByEmail(memberDto.email!!) ?: throw IllegalStateException("이미 가입된 회원입니다.")
     }
 
     // R

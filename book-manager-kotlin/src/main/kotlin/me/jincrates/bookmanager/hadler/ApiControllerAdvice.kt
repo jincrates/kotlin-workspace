@@ -1,5 +1,6 @@
 package me.jincrates.bookmanager.hadler
 
+import me.jincrates.bookmanager.service.MemberService
 import me.jincrates.bookmanager.web.BookApiController
 import me.jincrates.bookmanager.web.LoanApiController
 import me.jincrates.bookmanager.web.MemberApiController
@@ -26,7 +27,7 @@ class ApiControllerAdvice {
 
     @ExceptionHandler(value = [RuntimeException::class])
     fun exception(e: RuntimeException): String {
-        return "Server Error"
+        return "Server Error : " + e.message
     }
 
     @ExceptionHandler(MethodArgumentNotValidException::class)
@@ -36,6 +37,7 @@ class ApiControllerAdvice {
 
         return ResponseEntity.badRequest().body(errorResponse)
     }
+
 
     @ExceptionHandler(value = [ConstraintViolationException::class])
     fun constraintViolationException(e: ConstraintViolationException, request: HttpServletRequest): ResponseEntity<ErrorResponse> {

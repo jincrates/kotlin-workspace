@@ -1,4 +1,4 @@
-package me.jincrates.bookmanager.domain.loan
+package me.jincrates.bookmanager.domain.loans
 
 import me.jincrates.bookmanager.common.Status
 import me.jincrates.bookmanager.domain.books.Book
@@ -6,7 +6,6 @@ import me.jincrates.bookmanager.domain.books.BookRepository
 import me.jincrates.bookmanager.domain.members.Member
 import me.jincrates.bookmanager.domain.members.MemberRepository
 import me.jincrates.bookmanager.domain.members.MemberRole
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired

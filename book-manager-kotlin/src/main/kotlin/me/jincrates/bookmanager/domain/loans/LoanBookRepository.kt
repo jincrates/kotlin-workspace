@@ -1,4 +1,4 @@
-package me.jincrates.bookmanager.domain.loan
+package me.jincrates.bookmanager.domain.loans
 
 import org.springframework.data.jpa.repository.JpaRepository
 

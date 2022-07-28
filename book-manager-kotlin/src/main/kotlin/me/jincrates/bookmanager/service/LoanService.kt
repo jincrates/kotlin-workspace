@@ -1,13 +1,12 @@
 package me.jincrates.bookmanager.service
 
 import me.jincrates.bookmanager.domain.books.BookRepository
-import me.jincrates.bookmanager.domain.loan.Loan
-import me.jincrates.bookmanager.domain.loan.LoanBook
-import me.jincrates.bookmanager.domain.loan.LoanRepository
+import me.jincrates.bookmanager.domain.loans.Loan
+import me.jincrates.bookmanager.domain.loans.LoanBook
+import me.jincrates.bookmanager.domain.loans.LoanRepository
 import me.jincrates.bookmanager.domain.members.MemberRepository
 import me.jincrates.bookmanager.web.http.dto.LoanDto
 import org.springframework.stereotype.Service
-import java.util.*
 import javax.transaction.Transactional
 
 @Transactional
@@ -30,7 +29,7 @@ class LoanService(
         val loan = Loan().createLoan(member, loanBooks)
         loanRepository.save(loan)
 
-        return loan.id
+        return loan.id;
     }
 
     // R

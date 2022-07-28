@@ -47,6 +47,7 @@ class MemberApiController(
     // C
     @PostMapping(path = [""])
     fun create(@Valid @RequestBody memberDto: MemberDto): MemberDto? {
+
         return memberService.create(memberDto)
     }
 

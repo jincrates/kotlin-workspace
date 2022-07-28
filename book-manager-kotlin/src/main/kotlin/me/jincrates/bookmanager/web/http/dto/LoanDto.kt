@@ -1,11 +1,6 @@
 package me.jincrates.bookmanager.web.http.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import me.jincrates.bookmanager.common.annotation.StringFormatDateTime
-import me.jincrates.bookmanager.domain.books.Book
-import me.jincrates.bookmanager.domain.loan.Loan
-import me.jincrates.bookmanager.domain.members.Member
-import javax.persistence.*
 
 class LoanDto(
 

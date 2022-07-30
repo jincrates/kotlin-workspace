@@ -21,18 +21,17 @@ import org.springframework.test.web.servlet.MockMvc
 @AutoConfigureMockMvc
 class IssueControllerTest{
     @Autowired lateinit var mockMvc : MockMvc
-    @Autowired lateinit var issueService: IssueService
 
 //    @DisplayName("이슈 등록 - 정상")
 //    @Test
 //    fun createSuccessTest() {
-//        val issueRequest = IssueRequest().apply {
-//            this.summary = "테스트"
-//            this.description = "테스트 내용"
-//            this.type = IssueType.TASK
-//            this.priority = IssuePriority.LOW
-//            this.status = IssueStatus.TODO
-//        }
+//        val issueRequest = IssueRequest(
+//            summary = "테스트",
+//            description = "테스트 내용",
+//            type = IssueType.TASK,
+//            priority = IssuePriority.LOW,
+//            status = IssueStatus.TODO
+//        )
 //
 //        val json = jacksonObjectMapper().writeValueAsString(issueRequest)
 //        println(json)

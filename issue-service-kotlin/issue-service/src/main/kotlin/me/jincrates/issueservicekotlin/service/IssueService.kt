@@ -13,7 +13,7 @@ class IssueService(
 ) {
 
     @Transactional
-    fun create(userId: Long, request: IssueRequest) {
+    fun create(userId: Long, request: IssueRequest) : IssueResponse {
 
         val issue = Issue(
             summary = request.summary,

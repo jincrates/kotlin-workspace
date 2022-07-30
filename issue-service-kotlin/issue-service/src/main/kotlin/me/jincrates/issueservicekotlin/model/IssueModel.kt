@@ -8,11 +8,11 @@ import me.jincrates.issueservicekotlin.domain.enums.IssueType
 import java.time.LocalDateTime
 
 data class IssueRequest(
-    var summary: String,
-    var description: String,
-    var type: IssueType,
-    var status: IssueStatus,
-    var priority: IssuePriority,
+    val summary: String,
+    val description: String,
+    val type: IssueType,
+    val priority: IssuePriority,
+    val status: IssueStatus,
 )
 
 data class IssueResponse(
@@ -30,7 +30,7 @@ data class IssueResponse(
 ) {
     companion object {
 
-        operator fun invoke(issue: Issue) {
+        operator fun invoke(issue: Issue) =
             with(issue) {
                 IssueResponse(
                     id = this.id!!,
@@ -44,6 +44,5 @@ data class IssueResponse(
                     updatedAt = this.updatedAt
                 )
             }
-        }
     }
 }

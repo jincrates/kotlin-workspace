@@ -1,4 +1,4 @@
-package jincrates.issueservicekotlin.config
+package me.jincrates.issueservicekotlin.config
 
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.MethodParameter
@@ -11,18 +11,19 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 
 @Configuration
 class WebConfig(
-    private val authUserHandlerMethodArgumentResolver: AuthUserHandlerMethodArgumentResolver,
-) : WebMvcConfigurationSupport() {
+    private val authUserHandlerArgumentResolver: AuthUserHandlerArgumentResolver,
+): WebMvcConfigurationSupport() {
 
     override fun addArgumentResolvers(argumentResolvers: MutableList<HandlerMethodArgumentResolver>) {
         argumentResolvers.apply {
-            add(authUserHandlerMethodArgumentResolver)
+            add(authUserHandlerArgumentResolver)
         }
     }
 }
 
+
 @Component
-class AuthUserHandlerMethodArgumentResolver : HandlerMethodArgumentResolver {
+class AuthUserHandlerArgumentResolver : HandlerMethodArgumentResolver {
 
     override fun supportsParameter(parameter: MethodParameter): Boolean =
         AuthUser::class.java.isAssignableFrom(parameter.parameterType)

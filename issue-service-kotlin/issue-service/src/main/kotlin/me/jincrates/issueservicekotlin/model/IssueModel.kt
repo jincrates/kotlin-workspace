@@ -25,9 +25,9 @@ data class IssueResponse(
     val type: IssueType,
     val status: IssueStatus,
     val priority: IssuePriority,
-    @JsonFormat(pattern = "yyyy-MM-dd HH::mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     val createdAt: LocalDateTime?,
-    @JsonFormat(pattern = "yyyy-MM-dd HH::mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     val updatedAt: LocalDateTime?,
 ) {
     companion object {

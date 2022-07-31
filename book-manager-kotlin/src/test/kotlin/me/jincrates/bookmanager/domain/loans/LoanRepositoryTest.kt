@@ -1,8 +1,8 @@
 package me.jincrates.bookmanager.domain.loans
 
 import me.jincrates.bookmanager.common.Status
-import me.jincrates.bookmanager.domain.books.Book
-import me.jincrates.bookmanager.domain.books.BookRepository
+import me.jincrates.bookmanager.domain.Book
+import me.jincrates.bookmanager.domain.BookRepository
 import me.jincrates.bookmanager.domain.members.Member
 import me.jincrates.bookmanager.domain.members.MemberRepository
 import me.jincrates.bookmanager.domain.members.MemberRole

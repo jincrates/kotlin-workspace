@@ -32,7 +32,7 @@ class BookServiceTest {
 //            this.updatedBy = "tempUser"
         }
 
-        val result = bookService.create(bookDto)
+        val result = bookService.create(bookDto, request)
 
         assertNotNull(result)
         assertEquals("철학적 탐구", result?.title)

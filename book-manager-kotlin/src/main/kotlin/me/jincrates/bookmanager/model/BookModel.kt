@@ -8,23 +8,23 @@ import javax.validation.constraints.NotNull
 import javax.validation.constraints.PositiveOrZero
 
 data class BookRequest(
-    @field: NotBlank(message = "제목을 입력하지 않았습니다.")
+    @field: NotBlank(message = "제목을 입력하지 않았습니다")
     val title: String,
 
-    @field: NotBlank(message = "저자를 입력하지 않았습니다.")
+    @field: NotBlank(message = "저자를 입력하지 않았습니다")
     val author: String,
 
-    @field: NotBlank(message = "출판사를 입력하지 않았습니다.")
+    @field: NotBlank(message = "출판사를 입력하지 않았습니다")
     val publisher: String,
 
     @field: JsonFormat(pattern = "yyyy-MM-dd")
     val publicationAt: String,
 
-    @field: NotBlank(message = "ISBN을 입력하지 않았습니다.")
+    @field: NotBlank(message = "ISBN을 입력하지 않았습니다")
     val isbn: String,
 
-    @field: NotNull(message = "수량을 입력하지 않았습니다.")
-    @field: PositiveOrZero(message = "수량은 0 이상이어야 합니다.")  // 양수 또는 0이어야 합니다.
+    @field: NotNull(message = "수량을 입력하지 않았습니다")
+    @field: PositiveOrZero(message = "수량은 0 이상이어야 합니다")  // 양수 또는 0이어야 합니다.
     val stockNumber: Int,
 
     val imagePath: String? = null,

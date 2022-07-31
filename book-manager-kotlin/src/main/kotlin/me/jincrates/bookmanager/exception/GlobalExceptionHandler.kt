@@ -4,7 +4,6 @@ import com.auth0.jwt.exceptions.TokenExpiredException
 import mu.KotlinLogging
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
-import java.lang.Exception
 
 //전체 컨트롤러 예외사항을 감지
 @RestControllerAdvice
@@ -14,6 +13,12 @@ class GlobalExceptionHandler {
 
     @ExceptionHandler(ServerException::class)
     fun handleServerException(ex: ServerException) : ErrorResponse {
+        logger.error { ex.message }  //에러 로깅
+        return ErrorResponse(code = ex.code, message = ex.message)
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException::class)
+    fun handleMethodArgumentNotValidException(ex: MethodArgumentNotValidException) : ErrorResponse {
         logger.error { ex.message }  //에러 로깅
         return ErrorResponse(code = ex.code, message = ex.message)
     }

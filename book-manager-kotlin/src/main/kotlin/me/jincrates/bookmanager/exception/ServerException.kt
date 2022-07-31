@@ -1,5 +1,6 @@
 package me.jincrates.bookmanager.exception
 
+import org.springframework.web.client.HttpClientErrorException.BadRequest
 import java.lang.RuntimeException
 
 // TODO: sealed class?
@@ -16,3 +17,7 @@ data class NotFoundException(
 data class UnauthorizedException(
     override val message: String = "인증 정보가 잘못되었습니다",
 ) : ServerException(401, message)
+
+data class MethodArgumentNotValidException(
+    override val message: String = "Validation Failed",
+) : ServerException(403, message)

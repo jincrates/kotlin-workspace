@@ -1,6 +1,7 @@
 package me.jincrates.issueservicekotlin.model
 
 import com.fasterxml.jackson.annotation.JsonFormat
+import me.jincrates.issueservicekotlin.domain.Comment
 import me.jincrates.issueservicekotlin.domain.Issue
 import me.jincrates.issueservicekotlin.domain.enums.IssuePriority
 import me.jincrates.issueservicekotlin.domain.enums.IssueStatus
@@ -17,6 +18,7 @@ data class IssueRequest(
 
 data class IssueResponse(
     val id: Long,
+    val comments: List<CommentResponse> = emptyList(),
     val summary: String,
     val description: String,
     val userId: Long,
@@ -34,6 +36,7 @@ data class IssueResponse(
             with(issue) {
                 IssueResponse(
                     id = this.id!!,
+                    comments = comments.sortedByDescending(Comment::id).map(Comment::toResponse),
                     summary = this.summary,
                     description = this.description,
                     userId = this.userId,

@@ -15,6 +15,10 @@ class Issue(
     @Column
     var userId: Long,
 
+    //이슈 하나에 여러개의 코멘트 등록이 가능하기 때문
+    @OneToMany(fetch = FetchType.EAGER)
+    val comments: MutableList<Comment> = mutableListOf(),
+
     @Column
     var summary: String,
 

@@ -1,5 +1,8 @@
 package me.jincrates.reactivekotlin.customer
 
-data class Customer(var id: Int = 0, val name: String = "", val telephone: Telephone? = null) {
+import org.springframework.data.mongodb.core.mapping.Document
+
+@Document(collection = "Customers")
+data class Customer(var id: Int = 0, var name: String = "", var telephone: Telephone? = null) {
     data class Telephone(var countryCode: String = "", var telephoneNumber: String = "")
 }

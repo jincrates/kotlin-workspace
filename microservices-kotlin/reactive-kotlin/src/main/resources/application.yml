@@ -1,1 +1,7 @@
 spring.jackson.default-property-inclusion: NON_NULL
+
+spring:
+    data:
+        mongodb:
+            url: "mongodb://localhost:27017"
+            database: "microservices-kotlin"

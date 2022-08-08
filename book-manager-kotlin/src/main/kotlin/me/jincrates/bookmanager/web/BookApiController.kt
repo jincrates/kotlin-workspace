@@ -1,10 +1,13 @@
 package me.jincrates.bookmanager.web
 
+import me.jincrates.bookmanager.config.AuthUser
+import me.jincrates.bookmanager.exception.MethodArgumentNotValidException
+import me.jincrates.bookmanager.model.BookRequest
+import me.jincrates.bookmanager.model.BookResponse
 import me.jincrates.bookmanager.service.BookService
-import me.jincrates.bookmanager.web.http.dto.BookDto
-import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
+import org.springframework.validation.Errors
+import org.springframework.validation.FieldError
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -12,78 +15,55 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
+import java.lang.StringBuilder
 import javax.validation.Valid
 
 @RestController
-@RequestMapping("/api/book")
+@RequestMapping("/api/v1/books")
 class BookApiController(
-    val bookService: BookService
+    private val bookService: BookService
 ) {
 
-    // R
-    @GetMapping(path = [""])
-    fun read(
-        @RequestParam(required = false) id: Long?
-    ): ResponseEntity<Any?> {
-        return id?.let {
-            bookService.read(it)
-        }?.let {
-            return ResponseEntity.ok(it)
-        }?: kotlin.run {
-            return ResponseEntity
-                .status(HttpStatus.MOVED_PERMANENTLY)
-                .header(HttpHeaders.LOCATION, "/api/book/all")
-                .build()
-        }
-    }
-
-    @GetMapping(path = ["/all"])
-    fun readAll(): MutableList<BookDto> {
-        return bookService.readAll()
-    }
-
-    // C
-    @PostMapping("")
-    fun create(@Valid @RequestBody bookDto: BookDto): BookDto? {
-        return bookService.create(bookDto)
-        /*
-        // 1. Response
-        return BookResponse().apply{
-            bookService.create(bookDto)
-        }.apply {
-            // 2. result
-            this.result = Result().apply {
-                this.resultCode = "OK"
-                this.resultMessage = "성공"
+    @PostMapping()
+    fun create(
+        authUser: AuthUser,
+        @Valid @RequestBody request: BookRequest,
+        errors: Errors
+    ): BookResponse {
+        if (errors.hasErrors()) {
+            val sb = StringBuilder()
+            errors.allErrors.forEach{
+                sb.append(",").append((it as FieldError).field).append(":").append(it.defaultMessage)
             }
-        }.apply {
-            // 3. description
-            this.description = "도서가 등록되었습니다."
-        }.apply {
-            // 4. book mutable list
-            println(bookService.readAll())
-            this.book = bookService.readAll()
+            throw MethodArgumentNotValidException(sb.toString().substring(1))
         }
-        */
+        return bookService.create(authUser.userId, request)
     }
 
-    // U
-    // Todo create = 201 내리고, update = 200 내리도록 변경
-    @PutMapping(path = [""])
-    fun update(@Valid @RequestBody bookDto: BookDto): BookDto? {
-        return bookService.create(bookDto)
-    }
+    @GetMapping()
+    fun getAll(
+        authUser: AuthUser,
+    ) = bookService.getAll()
 
-    // D
-    @DeleteMapping(path = ["/{id}"])
-    fun delete(@PathVariable(name = "id") _id : Long): ResponseEntity<Any> {
+    @GetMapping("/{bookId}")
+    fun get(
+        authUser: AuthUser,
+        @PathVariable bookId: Long,
+    ) = bookService.get(bookId)
 
-        if (!bookService.delete(_id)) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
-        }
+    @PutMapping("/{bookId}")
+    fun edit(
+        authUser: AuthUser,
+        @PathVariable bookId: Long,
+        @Valid @RequestBody request: BookRequest,
+    ) = bookService.edit(bookId, request) //삭제는 다른 인원도 가능하도록 userId를 넘기지 않음
 
-        return ResponseEntity.ok().build()
-    }
+    @DeleteMapping("/{bookId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun delete(
+        authUser: AuthUser,
+        @PathVariable bookId: Long,
+    ) = bookService.delete(bookId) //삭제는 다른 인원도 가능하도록 userId를 넘기지 않음
 }

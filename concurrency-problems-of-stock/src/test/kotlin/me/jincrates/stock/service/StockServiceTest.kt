@@ -65,6 +65,13 @@ class StockServiceTest {
         //예상: 100 - (1 * 100) = 0
         val stock = stockRepository.findByIdOrNull(1L) ?: throw RuntimeException("재고를 찾을 수 없습니다.")
         assertEquals(0L, stock.quantity)
+
+        /*
+        [실패 이유] - 경쟁 상태(Race Condition)
+
+        경쟁 상태란 둘 이상의 입력 또는 조작의 타이밍이나 순서 등이 결과값에 영향을 줄 수 있는 상태를 말한다.
+        입력 변화의 타이밍이나 순서가 예상과 다르게 작동하면 정상적인 결과가 나오지 않게 될 위험이 있는데 이를 경쟁 위험이라고 한다. - 위키백과
+         */
     }
 
 }

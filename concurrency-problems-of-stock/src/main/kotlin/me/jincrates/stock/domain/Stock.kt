@@ -13,6 +13,7 @@ class Stock (
     var productId: Long,
 
     var quantity: Long,
+
 ) {
 
     /**

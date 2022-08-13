@@ -1,10 +1,10 @@
-package me.jincrates.bookmanager
+package me.jincrates.stock
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class BookManagerApplicationTests {
+class StockApplicationTests {
 
 	@Test
 	fun contextLoads() {

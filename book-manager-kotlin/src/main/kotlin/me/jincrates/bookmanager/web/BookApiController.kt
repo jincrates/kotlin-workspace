@@ -31,16 +31,7 @@ class BookApiController(
         authUser: AuthUser,
         @Valid @RequestBody request: BookRequest,
         errors: Errors
-    ): BookResponse {
-        if (errors.hasErrors()) {
-            val sb = StringBuilder()
-            errors.allErrors.forEach{
-                sb.append(",").append((it as FieldError).field).append(":").append(it.defaultMessage)
-            }
-            throw MethodArgumentNotValidException(sb.toString().substring(1))
-        }
-        return bookService.create(authUser.userId, request)
-    }
+    ): BookResponse = bookService.create(authUser.userId, request)
 
     @GetMapping()
     fun getAll(

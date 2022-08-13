@@ -54,7 +54,9 @@ class StockServiceTest {
         for (i in 0..threadCount) {
             executorService.submit {
                 try {
-                    stockService.decrease(1L, 1L)
+                    //stockService.decrease(1L, 1L)
+                    //stockService.decreaseSynchronized(1L, 1L)
+                    stockService.decreaseSynchronizedOnly(1L, 1L)
                 } finally {
                     latch.countDown()
                 }
@@ -71,7 +73,19 @@ class StockServiceTest {
 
         경쟁 상태란 둘 이상의 입력 또는 조작의 타이밍이나 순서 등이 결과값에 영향을 줄 수 있는 상태를 말한다.
         입력 변화의 타이밍이나 순서가 예상과 다르게 작동하면 정상적인 결과가 나오지 않게 될 위험이 있는데 이를 경쟁 위험이라고 한다. - 위키백과
-         */
+
+        [해결 방법1] - @Synchronized
+        @Synchronized를 사용하면 해당 메소드에 1개의 쓰레드만 접근이 가능하다.
+
+        단, @Transactional과 함께 쓸 수 없다.
+        @Transactional를 사용하면 Spring에서 @Transactional를 랩핑한 클래스를 새로 만들어서 실행한다.
+        트랜잭션 종료(업데이트가 수행되는 시점)하기 이전에 다른 쓰레드에서 decrease()를 호출할 수 있고, 갱신 이전의 값을 가져가기 때문에
+        데이터일관성이 깨지게 된다.
+
+        [해결 방법1 - 문제점] - 멑리 서버 환경에서는 보장되지 않는다.
+        @Synchronized는 하나의 프로세스 안에서만 보장이 된다. 서버가 1대의 경우에는 문제가 없지만,
+        서버가 1대 이상인 경우 데이터의 접근을 여러 대에서 할 수 있다는 문제가 발생한다.
+        */
     }
 
 }

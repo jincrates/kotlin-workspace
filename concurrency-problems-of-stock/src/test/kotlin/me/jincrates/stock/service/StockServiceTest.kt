@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.data.repository.findByIdOrNull
 import java.lang.RuntimeException
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 @SpringBootTest
 class StockServiceTest {
@@ -29,13 +32,39 @@ class StockServiceTest {
 
     @Test
     @DisplayName("재고 감소 테스트")
-    fun stockDecreaseTest() {
-        val stockId = 1L
-        stockService.decrease(stockId, 1L)
+    fun stock_decrease() {
+        stockService.decrease(1L, 1L)
 
         //예상: 100 - 1 = 99
-        val stock = stockRepository.findByIdOrNull(stockId) ?: throw RuntimeException("재고를 찾을 수 없습니다. stock.id = $stockId")
+        val stock = stockRepository.findByIdOrNull(1L) ?: throw RuntimeException("재고를 찾을 수 없습니다.")
         assertEquals(99, stock.quantity)
+    }
+
+    @Test
+    @DisplayName("동시에 100개 요청")
+    fun stock_decrease_concurrency() {
+        val threadCount = 100
+
+        //ExecutorService: 비동기 작업을 단순화하여 사용하도록 하는 java api
+        val executorService : ExecutorService = Executors.newFixedThreadPool(32)
+
+        //CountDownLatch: 다른 쓰레드에서 수행중인 작업이 완료될 때까지 대기하는 역할
+        val latch = CountDownLatch(threadCount)
+
+        for (i in 0..threadCount) {
+            executorService.submit {
+                try {
+                    stockService.decrease(1L, 1L)
+                } finally {
+                    latch.countDown()
+                }
+            }
+        }
+        latch.await()
+
+        //예상: 100 - (1 * 100) = 0
+        val stock = stockRepository.findByIdOrNull(1L) ?: throw RuntimeException("재고를 찾을 수 없습니다.")
+        assertEquals(0L, stock.quantity)
     }
 
 }

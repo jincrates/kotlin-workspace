@@ -14,6 +14,9 @@ class Stock (
 
     var quantity: Long,
 
+    @Version
+    var version: Long? = null,
+
 ) {
 
     /**

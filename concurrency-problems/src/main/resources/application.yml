@@ -1,1 +1,22 @@
+spring:
+    jpa:
+        hibernate:
+            ddl-auto: create
+        show_sql: true
+        #format_sql: true
 
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/concurrency-problems
+        username: bootuser
+        password: bootuser
+
+logging:
+    level:
+        org:
+            hibernate:
+                SQL: DEBUG
+                type:
+                    descriptor:
+                        sql:
+                            BasicBinder: TRACE

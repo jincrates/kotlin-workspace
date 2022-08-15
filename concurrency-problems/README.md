@@ -6,6 +6,7 @@
 ![Generic badge](https://img.shields.io/badge/8.0-MySQL-01578B.svg)
 ![Generic badge](https://img.shields.io/badge/7.0.4-Redis-D82C20.svg)
 
+<br/>
 
 ## 생각해보기
 - 강의를 신청하는 프로그램을 만들고 있습니다. 강의는 최대 100명까지 예약신청할 수 있습니다.
@@ -32,7 +33,7 @@ fun 예약신청(추가인원) {
 <br/>
 
 ### 나의 예상 - 순차적으로 처리
-Thread-1이 데이터를 select하고 update 이후, Thread-2가 데이터를 select해서 update (순차적)
+Thread-1이 데이터를 select하고 update 이후, Thread-2가 데이터를 select해서 update
 <img width="767" alt="스크린샷 2022-08-15 오후 1 23 28" src="https://user-images.githubusercontent.com/53418946/184576757-fe054404-b862-49bc-b7b7-8c42c8dd1862.png">
 
 ### 실제 동작 - 동시적으로 처리
@@ -49,23 +50,30 @@ Thread-1이 데이터를 select하고 update 이후, Thread-2가 데이터를 se
 - 실제로 데이터에 Lock을 걸어서 정합성을 맞추는 방법입니다. exclusive lock을 걸게 되면 다른 트랜잭션에서는 lock이 해제되기 전에 데이터를 가져갈 수 없게 됩니다.  
 - 데이터간 충돌이 많이 발생하는 경우 Optimictic Lock보다 성능이 좋습니다.
 - 데드락(Dead Lock)이 걸릴 수 있기 때문에 주의하여 사용하여야 합니다.
+- [[commit] Pessimistic Lock을 활용한 문제해결](https://github.com/jincrates/kotlin-workspace/commit/9288b9bc02bd01b16fa38faae6da760ece1859c7)
+
 
 ### 2. MySQL - Optimictic Lock
 - 실제로 Lock을 이용하지 않고 버전(`@Version`)을 이용함으로써 정합성을 맞추는 방법입니다. 먼저 데이터를 읽은 후에 update를 수행할 때 현재 내가 읽은 버전이 맞는지 확인하며 업데이트 합니다.
 - 별도의 lock을 잡는 것이 아니기 때문에 데드락에 빠질 위험이 적습니다.
 - 내가 읽은 버전에서 수정사항이 생겼을 경우에는 application에서 다시 읽은 후에 작업을 수행할 수 있도록 처리해야 합니다.
 - 충돌이 빈번하게 일어난다면 Pessimistic Lock 사용하는 것이 성능상 나을 수도 있습니다.
+- [[commit] Optimictic Lock을 활용한 문제해결](https://github.com/jincrates/kotlin-workspace/commit/9288b9bc02bd01b16fa38faae6da760ece1859c7)
+
 
 ### 3. Redis - Lettuce Lock
 - setnx 명령어을 활용하여 분산락 구현
 - spring data redis를 이용하면 lettuce가 기본이기 때문에 별도의 라이브러리를 사용하지 않아도 됩니다.
 - spin lock 방식이기 때문에 동시에 많은 쓰레드가 lock 획득 대기 상태라면 redis에 부하가 갈 수 있습니다.
 - 재시도가 필요없는 경우 사용
+- [[commit] Lettuce을 활용한 문제해결](https://github.com/jincrates/kotlin-workspace/commit/a7ae116c53d82518906777f219a397bdb31ae2e9)
+
 ### 4. Redis - Redisson 외부 라이브러리
 - 락 획득 재시도를 기본으로 제공합니다.
 - pub-sub 기반으로 구현이 되어 있기 때문에 lettuce와 비교했을 때 redis에 부하가 덜 갑니다.
 - 다만 lock을 라이브러리 차원에서 제공해주기 때문에 사용법을 공부해야 합니다.
 - 재시도가 필요한 경우 사용
+- [[commit] Redisson을 활용한 문제해결](https://github.com/jincrates/kotlin-workspace/commit/a7ae116c53d82518906777f219a397bdb31ae2e9)
 
 <br/>
 
@@ -83,7 +91,8 @@ Thread-1이 데이터를 select하고 update 이후, Thread-2가 데이터를 se
 <br/>
 
 ## 결론
-ㅇㅇㅇ
+현재 제가 다니는 회사에서는 MSSQL을 사용하며, MSSQL에서는 기본적으로 SELECT시 LOCK이 걸리게 됩니다. 오히려 데드락 발생으로 인해 `WITH(NOLOCK)`절을 추가하여 LOCK 없이 데이터를 조회하여 성능상의 이슈를 해결해왔습니다.    
+그러나 이번 동시성 문제에 대해서 공부하고 알아가면서 LOCK 중요성을 다시 한 번 알게 되었습니다. 대용량 트래픽이 발생하는 과정에서 동시성 제어를 하지 않는다면, 데이터 정합성이 맞지 않는 치명적인 오류가 발생할 수 있기 때문입니다.   
 
 <br/>
 

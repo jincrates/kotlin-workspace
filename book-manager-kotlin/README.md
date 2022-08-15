@@ -3,7 +3,7 @@
 ## 기술 스택
 ![Generic badge](https://img.shields.io/badge/1.6.21-kotlin-7F52FF.svg)
 ![Generic badge](https://img.shields.io/badge/2.7.1-SpringBoot-6DB33F.svg)
-
+<br/>
 
 ## 목적
 

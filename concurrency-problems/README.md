@@ -31,24 +31,54 @@ fun 예약신청(추가인원) {
 
 <br/>
 
+### 나의 예상 - 순차적으로 처리
+Thread-1이 데이터를 select하고 update 이후, Thread-2가 데이터를 select해서 update (순차적)
+<img width="767" alt="스크린샷 2022-08-15 오후 1 23 28" src="https://user-images.githubusercontent.com/53418946/184576757-fe054404-b862-49bc-b7b7-8c42c8dd1862.png">
+
+### 실제 동작 - 동시적으로 처리
+- Theand-1이 select하고 update하기 이전에, Thead-2도 해당 데이터를 select 해서 update 처리
+- Race Condition 발생 - 예약 신청이 2번 요청했음에도 현재 예약인원 수는 1명
+<img width="761" alt="스크린샷 2022-08-15 오후 1 23 38" src="https://user-images.githubusercontent.com/53418946/184576763-455aa448-76b4-45d2-9531-72f18ace7cf6.png">
+
+<br/>
+
 ## 문제 해결방법
+하나의 Thread가 처리하기 이전에 다른 Thead가 접근하지 못하도록 처리합니다. 
 
-### MySQL - Pessimistic Lock
-ㅇㅇㅇ
+### 1. MySQL - Pessimistic Lock
+- 실제로 데이터에 Lock을 걸어서 정합성을 맞추는 방법입니다. exclusive lock을 걸게 되면 다른 트랜잭션에서는 lock이 해제되기 전에 데이터를 가져갈 수 없게 됩니다.  
+- 데이터간 충돌이 많이 발생하는 경우 Optimictic Lock보다 성능이 좋습니다.
+- 데드락(Dead Lock)이 걸릴 수 있기 때문에 주의하여 사용하여야 합니다.
 
-### MySQL - Optimictic Lock
-ㅇㅇㅇ
+### 2. MySQL - Optimictic Lock
+- 실제로 Lock을 이용하지 않고 버전(`@Version`)을 이용함으로써 정합성을 맞추는 방법입니다. 먼저 데이터를 읽은 후에 update를 수행할 때 현재 내가 읽은 버전이 맞는지 확인하며 업데이트 합니다.
+- 별도의 lock을 잡는 것이 아니기 때문에 데드락에 빠질 위험이 적습니다.
+- 내가 읽은 버전에서 수정사항이 생겼을 경우에는 application에서 다시 읽은 후에 작업을 수행할 수 있도록 처리해야 합니다.
+- 충돌이 빈번하게 일어난다면 Pessimistic Lock 사용하는 것이 성능상 나을 수도 있습니다.
 
-### Redis - Lettuce Lock
-ㅇㅇㅇ
-
-### Redis - Redisson 외부 라이브러리
-ㅇㅇㅇ
+### 3. Redis - Lettuce Lock
+- setnx 명령어을 활용하여 분산락 구현
+- spring data redis를 이용하면 lettuce가 기본이기 때문에 별도의 라이브러리를 사용하지 않아도 됩니다.
+- spin lock 방식이기 때문에 동시에 많은 쓰레드가 lock 획득 대기 상태라면 redis에 부하가 갈 수 있습니다.
+- 재시도가 필요없는 경우 사용
+### 4. Redis - Redisson 외부 라이브러리
+- 락 획득 재시도를 기본으로 제공합니다.
+- pub-sub 기반으로 구현이 되어 있기 때문에 lettuce와 비교했을 때 redis에 부하가 덜 갑니다.
+- 다만 lock을 라이브러리 차원에서 제공해주기 때문에 사용법을 공부해야 합니다.
+- 재시도가 필요한 경우 사용
 
 <br/>
 
 ## MySQL VS Redis
-ㅇㅇㅇ
+
+### MySQL
+- 이미 MySQL을 사용하고 있다면 별도의 비용없이 사용이 가능합니다.
+- 어느정도의 트래픽까지는 문제없이 활용이 가능합니다.
+- Redis보다는 성능이 좋지 않습니다.
+
+### Redis
+- MySQL보다 성능이 좋습니다.
+- 활용중인 Redis가 없다면 별도의 구축 비용과 인프라 관리비용이 발생합니다.
 
 <br/>
 
@@ -58,4 +88,5 @@ fun 예약신청(추가인원) {
 <br/>
 
 ## 참고자료
-[인프런 강의 - 재고시스템으로 통해 알아보는 동시성이슈 해결방법](https://inf.run/1qjS)
+- [인프런 강의 - 재고시스템으로 통해 알아보는 동시성이슈 해결방법](https://inf.run/1qjS)
+- [JPA에서 Optimistic Lock과 Pessimistic Lock)](https://skasha.tistory.com/49)

@@ -1,4 +1,11 @@
 # 예약시스템으로 통해 알아보는 동시성 문제
+![Generic badge](https://img.shields.io/badge/1.6.21-kotlin-7F52FF.svg)
+![Generic badge](https://img.shields.io/badge/17-OpenJDK-537E99.svg)
+![Generic badge](https://img.shields.io/badge/2.7.2-SpringBoot-6DB33F.svg)
+![Generic badge](https://img.shields.io/badge/5.0-JUnit-DD524A.svg)
+![Generic badge](https://img.shields.io/badge/8.0-MySQL-01578B.svg)
+![Generic badge](https://img.shields.io/badge/7.0.4-Redis-D82C20.svg)
+
 
 ## 생각해보기
 - 강의를 신청하는 프로그램을 만들고 있습니다. 강의는 최대 100명까지 예약신청할 수 있습니다.

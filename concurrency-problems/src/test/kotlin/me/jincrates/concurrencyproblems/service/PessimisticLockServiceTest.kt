@@ -35,7 +35,7 @@ class PessimisticLockServiceTest {
     fun after() = lectureReservationRepository.deleteAll()
 
     @Test
-    @DisplayName("동시에 100개 요청 - PessimisticLock 사용한 문제 해결")
+    @DisplayName("동시에 100개 요청 - Pessimistic Lock을 사용한 문제 해결")
     fun add_reservations_concurrency() {
         val threadCount = 100
 

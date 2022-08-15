@@ -1,11 +1,11 @@
-package me.jincrates.concurrencyproblems.service
+package me.jincrates.concurrencyproblems.facade
 
 import me.jincrates.concurrencyproblems.domain.LectureReservation
-import me.jincrates.concurrencyproblems.facade.OptimisticLockFacade
 import me.jincrates.concurrencyproblems.repository.LectureReservationRepository
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -17,7 +17,7 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 @SpringBootTest
-class OptimisticLockServiceTest {
+class OptimisticLockFacadeTest {
 
     @Autowired lateinit var optimisticLockFacade: OptimisticLockFacade
     @Autowired lateinit var lectureReservationRepository: LectureReservationRepository
@@ -35,8 +35,8 @@ class OptimisticLockServiceTest {
     @AfterEach
     fun after() = lectureReservationRepository.deleteAll()
 
-    @Test
-    @DisplayName("동시에 100개 요청 - OptimisticLock 사용한 문제 해결")
+    @Disabled @Test
+    @DisplayName("동시에 100개 요청 - Optimistic Lock을 사용한 문제 해결")
     fun add_reservations_concurrency() {
         val threadCount = 100
 

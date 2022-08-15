@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="49ca12d0-c6d5-4e3d-98ec-9fff6eb410ac" name="Changes" comment="[해결 방법2-2] - Optimistic Lock 사용하기">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/me/jincrates/stock/StockApplication.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/me/jincrates/stock/domain/RedisLockRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/me/jincrates/stock/domain/Stock.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/me/jincrates/stock/domain/StockRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/me/jincrates/stock/facade/LettuceLockStockFacade.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/me/jincrates/stock/facade/OptimisticLockFacade.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/me/jincrates/stock/service/OptimisticLockService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/me/jincrates/stock/service/PessimisticLockService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/me/jincrates/stock/service/StockService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/me/jincrates/stock/StockApplicationTests.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/me/jincrates/stock/facade/LettuceLockStockFacadeTest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/me/jincrates/stock/service/OptimisticLockServiceTest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/me/jincrates/stock/service/PessimisticLockServiceTest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/me/jincrates/stock/service/StockServiceTest.kt" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Interface" />
+        <option value="Kotlin Class" />
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2DHP1ityAprFday4q6qjTEH9nzY" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jincrates/projects/back/kotlin-workspace/concurrency-problems-of-stock&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="me.jincrates.stock.facade" />
+      <recent name="me.jincrates.stock.service" />
+    </key>
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="me.jincrates.stock.service" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.LettuceLockStockFacadeTest">
+    <configuration name="LettuceLockStockFacadeTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;me.jincrates.stock.facade.LettuceLockStockFacadeTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="OptimisticLockServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;me.jincrates.stock.service.OptimisticLockServiceTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="OptimisticLockServiceTest.stock_decrease_concurrency" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;me.jincrates.stock.service.OptimisticLockServiceTest.stock_decrease_concurrency&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="PessimisticLockServiceTest.stock_decrease_concurrency" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;me.jincrates.stock.service.PessimisticLockServiceTest.stock_decrease_concurrency&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="StockApplicationKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="me.jincrates.stock.StockApplicationKt" />
+      <module name="stock.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="concurrency-problems-of-stock" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="concurrency-problems-of-stock" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.LettuceLockStockFacadeTest" />
+        <item itemvalue="Gradle.OptimisticLockServiceTest" />
+        <item itemvalue="Kotlin.StockApplicationKt" />
+        <item itemvalue="Gradle.OptimisticLockServiceTest.stock_decrease_concurrency" />
+        <item itemvalue="Gradle.PessimisticLockServiceTest.stock_decrease_concurrency" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="49ca12d0-c6d5-4e3d-98ec-9fff6eb410ac" name="Changes" comment="" />
+      <created>1660352825417</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1660352825417</updated>
+    </task>
+    <task id="LOCAL-00001" summary="재고시스템으로 알아보는 동시성 이슈">
+      <created>1660353236365</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1660353236365</updated>
+    </task>
+    <task id="LOCAL-00002" summary="1. 재고 도메인 추가&#10;2. 재고 감소로직 추가&#10;3. 재고 감소 테스트 코드 작성">
+      <created>1660355312161</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1660355312161</updated>
+    </task>
+    <task id="LOCAL-00003" summary="현재 로직의 문제점">
+      <created>1660356034572</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1660356034572</updated>
+    </task>
+    <task id="LOCAL-00004" summary="[실패 이유] - 경쟁 상태(Race Condition)">
+      <created>1660356304367</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1660356304367</updated>
+    </task>
+    <task id="LOCAL-00005" summary="[해결 방법1 - 문제점] - 멑리 서버 환경에서는 보장되지 않는다.">
+      <created>1660357565601</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1660357565601</updated>
+    </task>
+    <task id="LOCAL-00006" summary="[해결 방법1 - 문제점] - 멑리 서버 환경에서는 보장되지 않는다.">
+      <created>1660357606636</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1660357606636</updated>
+    </task>
+    <task id="LOCAL-00007" summary="[해결 방법1 - 문제점] - 멑리 서버 환경에서는 보장되지 않는다.">
+      <created>1660357646378</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1660357646378</updated>
+    </task>
+    <task id="LOCAL-00008" summary="[해결 방법1 - 문제점] - 멑리 서버 환경에서는 보장되지 않는다.(문구 수정)">
+      <created>1660358717345</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1660358717345</updated>
+    </task>
+    <task id="LOCAL-00009" summary="[해결 방법2-1] - Pessimistic Lock 사용하기">
+      <created>1660434894726</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1660434894726</updated>
+    </task>
+    <task id="LOCAL-00010" summary="[해결 방법3-1] - Redis Lettuce Lock 사용하기">
+      <created>1660450200247</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1660450200247</updated>
+    </task>
+    <task id="LOCAL-00011" summary="[해결 방법2-2] - Optimistic Lock 사용하기">
+      <created>1660450236667</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1660450236667</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="재고시스템으로 알아보는 동시성 이슈" />
+    <MESSAGE value="1. 재고 도메인 추가&#10;2. 재고 감소로직 추가&#10;3. 재고 감소 테스트 코드 작성" />
+    <MESSAGE value="현재 로직의 문제점" />
+    <MESSAGE value="[실패 이유] - 경쟁 상태(Race Condition)" />
+    <MESSAGE value="[해결 방법1] - @Synchronized 사용" />
+    <MESSAGE value="[해결 방법1 - 문제점] - 멑리 서버 환경에서는 보장되지 않는다." />
+    <MESSAGE value="[해결 방법1 - 문제점] - 멑리 서버 환경에서는 보장되지 않는다.(문구 수정)" />
+    <MESSAGE value="[해결 방법2-1] - Pessimistic Lock 사용하기" />
+    <MESSAGE value="[해결 방법3-1] - Redis Lettuce Lock 사용하기" />
+    <MESSAGE value="[해결 방법2-2] - Optimistic Lock 사용하기" />
+    <option name="LAST_COMMIT_MESSAGE" value="[해결 방법2-2] - Optimistic Lock 사용하기" />
+  </component>
+</project>

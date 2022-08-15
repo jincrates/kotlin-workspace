@@ -1,12 +1,12 @@
-package me.jincrates.concurrencyproblems.service
+package me.jincrates.concurrencyproblems.facade
 
 import me.jincrates.concurrencyproblems.domain.LectureReservation
-import me.jincrates.concurrencyproblems.facade.LettuceLockFacade
-import me.jincrates.concurrencyproblems.facade.OptimisticLockFacade
-import me.jincrates.concurrencyproblems.facade.RedissonLockFacade
 import me.jincrates.concurrencyproblems.repository.LectureReservationRepository
-import org.junit.jupiter.api.*
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.data.repository.findByIdOrNull
@@ -16,9 +16,9 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 @SpringBootTest
-class LectureReservationServiceTest {
+class LettuceLockFacadeTest {
 
-    @Autowired lateinit var lectureReservationService: LectureReservationService
+    @Autowired lateinit var lettuceLockFacade: LettuceLockFacade
     @Autowired lateinit var lectureReservationRepository: LectureReservationRepository
 
     @BeforeEach
@@ -35,18 +35,8 @@ class LectureReservationServiceTest {
     fun after() = lectureReservationRepository.deleteAll()
 
     @Test
-    @DisplayName("예약 신청 테스트")
-    fun add_reservation() {
-        lectureReservationService.addReservations(1L, 1L)
-
-        //예상: 0 + 1 = 1
-        val lectureReservation = lectureReservationRepository.findByIdOrNull(1L) ?: throw RuntimeException("예약정보를 찾을 수 없습니다.")
-        assertEquals(1, lectureReservation.currentNumberOfReservations)
-    }
-
-    @Test
-    @DisplayName("동시에 100개 요청 - 동시성 제어X")
-    fun add_reservations_concurrency1() {
+    @DisplayName("동시에 100개 요청 - Redis Lettuce Lock을 사용한 문제 해결")
+    fun add_reservations_concurrency() {
         val threadCount = 100
 
         //ExecutorService: 비동기 작업을 단순화하여 사용하도록 하는 java api
@@ -58,7 +48,7 @@ class LectureReservationServiceTest {
         for (i in 0 .. threadCount) {
             executorService.submit {
                 try {
-                    lectureReservationService.addReservations(1L, 1L)
+                    lettuceLockFacade.addReservations(1L, 1L)
                 } finally {
                     latch.countDown()
                 }
@@ -71,9 +61,6 @@ class LectureReservationServiceTest {
         assertEquals(100L, lectureReservation.currentNumberOfReservations)
 
         /*
-        [실패 이유] - 경쟁 상태(Race Condition)
-        경쟁 상태란 둘 이상의 입력 또는 조작의 타이밍이나 순서 등이 결과값에 영향을 줄 수 있는 상태를 말한다.
-        입력 변화의 타이밍이나 순서가 예상과 다르게 작동하면 정상적인 결과가 나오지 않게 될 위험이 있는데 이를 경쟁 위험이라고 한다. - 위키백과
         */
     }
 }

@@ -1,7 +1,7 @@
 package me.jincrates.bookmanager.service
 
-import me.jincrates.bookmanager.domain.Book
-import me.jincrates.bookmanager.domain.BookRepository
+import me.jincrates.bookmanager.domain.book.Book
+import me.jincrates.bookmanager.repository.BookRepository
 import me.jincrates.bookmanager.exception.NotFoundException
 import me.jincrates.bookmanager.model.BookRequest
 import me.jincrates.bookmanager.model.BookResponse

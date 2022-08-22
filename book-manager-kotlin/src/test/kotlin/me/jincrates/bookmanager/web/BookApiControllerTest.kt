@@ -1,7 +1,7 @@
 package me.jincrates.bookmanager.web
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import me.jincrates.bookmanager.domain.BookRepository
+import me.jincrates.bookmanager.repository.BookRepository
 import me.jincrates.bookmanager.model.BookRequest
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test

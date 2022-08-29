@@ -1,5 +1,7 @@
 package me.jincrates.uservice.controller
 
+import me.jincrates.uservice.model.SignInRequest
+import me.jincrates.uservice.model.SignInResponse
 import me.jincrates.uservice.model.SignUpRequest
 import me.jincrates.uservice.service.UserService
 import org.springframework.web.bind.annotation.PostMapping
@@ -16,5 +18,10 @@ class UserController(
     @PostMapping("/signup")
     suspend fun signUp(@RequestBody request: SignUpRequest) {
         userService.signUp(request)
+    }
+
+    @PostMapping("/signin")
+    suspend fun signIn(@RequestBody signInRequest: SignInRequest) : SignInResponse {
+        return userService.signIn(signInRequest)
     }
 }

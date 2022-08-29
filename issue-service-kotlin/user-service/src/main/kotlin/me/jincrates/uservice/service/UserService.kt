@@ -3,6 +3,7 @@ package me.jincrates.uservice.service
 import me.jincrates.uservice.config.JWTProperties
 import me.jincrates.uservice.domain.entity.User
 import me.jincrates.uservice.domain.repository.UserRepository
+import me.jincrates.uservice.exception.InvalidJwtTokenException
 import me.jincrates.uservice.exception.PasswordNotMatchedException
 import me.jincrates.uservice.exception.UserExistsException
 import me.jincrates.uservice.exception.UserNotFoundException
@@ -69,5 +70,21 @@ class UserService(
 
     suspend fun logout(token: String) {
         cacheManager.awaitEvict(token)
+    }
+
+    suspend fun getByToken(token: String): User {
+        val cachedUser = cacheManager.awaitGetOrPut(key = token, ttl = CACHE_TTL) {
+            //캐시가 유효하지 않은 경우 동작
+            val decodedJWT = JwtUtils.decode(token, jwtProperties.secret, jwtProperties.issuer)
+
+            val userId: Long = decodedJWT.claims["userId"]?.asLong() ?: throw InvalidJwtTokenException()
+            get(userId)
+        }
+
+        return cachedUser
+    }
+
+    suspend fun get(userId: Long) : User {
+        return userRepository.findById(userId) ?: throw  UserNotFoundException()
     }
 }

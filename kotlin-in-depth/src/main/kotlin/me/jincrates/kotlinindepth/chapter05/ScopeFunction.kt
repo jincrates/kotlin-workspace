@@ -14,18 +14,79 @@ package me.jincrates.kotlinindepth.chapter05
 일반적으로 여러 영역 함수를 내포시키면 this나 it이 어떤 대상을 가리키는지 구분하기 어려워지므로 \
 영역 함수를 여러 겹으로 내포시켜 사용하지 않는 편을 권장한다.
  */
-class Address {
-    var zipCode: Int = 0
-    var city: String = ""
-    var street: String = ""
+class Address(
+    var zipCode: Int = 0,
+    var city: String = "",
+    var street: String = "",
     var house: String = ""
-
+) {
     fun post(message: String): Boolean {
         "Message for {$zipCode, $city, $street, $house}: $message"
         return readln() == "OK"
     }
 }
 
+fun Address.showCityAddress() = println("run(): $street, $house")
+
 fun main() {
+    /*
+    [run 함수]
+    확장 람다를 받은 확장 함수이며 람다의 결과를 돌려준다.
+    기본적인 사용 패턴은 객체 상태를 설정한 다음,
+    이 객체를 대상으로 어떤 결과를 만들어 내는 람다를 호출하는 것이다.
+    */
+    Address().run {
+        // Address 인스턴스를 this로 사용할 수 있다
+        zipCode = 123456
+        city = "London"
+        street = "Baker Street"
+        house = "221b"
+        showCityAddress()
+    }
+
+    /*
+    [with 함수]
+    with 함수는 run()과 상당히 비슷하지만, 확장 함수 타입이 아니므로,
+    문맥 식을 with의 첫 번째 인자로 전달해야 한다.
+    */
+    val message = with (Address(city = "London", street =  "Baker Street", house = "221b")) {
+        "with(): Address: $city, $street, $house"
+    }
+    println(message)
+
+
+    /*
+    [let 함수]
+    let 함수는 run()과 비슷하지만 확장 함수 타입의 람다를 받지 않고 인자가 하나뿐인 함수 타입의 람다를 받는다는 점이 다르다.
+    따라서 문맥 식의 값은 람다의 인자로 전달된다.
+    let의 반환값은 람다가 반환하는 값과 같다.
+    외부 영역에 새로운 변수를 도입하는 일을 피하고 싶을 때 주로 이 함수를 사용한다.
+
+     let의 일반적인 사용법 중에는 널이 될 수 있는 값을 안전성 검사를 거쳐서 널이 될 수 없는 함수에 전달하는 용법이 있다.
+     */
+    Address(city = "London", street =  "Baker Street", house = "221b").let {
+        //이 안에서는 it 파라미터를 통해 Address 인스턴스에 접근할 수 있음
+        println("let(): To City : ${it.city}")
+        it.post("Hello!")
+    }
+
+    /*
+    [apply/also 함수]
+    apply 함수는 확장 람다를 받는 확장 함수이며 자신의 수신 객체를 반환한다.
+    이 함수는 일반적으로 runt()과 달리 반환값을 만들어내지 않고 객체의 상태를 설정하는 경우에 사용한다.
+     */
+    val message2 = readln() ?: return
+    Address().apply {
+        city = "London"
+        street = "Baker Street"
+        house = "221b"
+    }.post(message2)
+
+    val message3 = readln() ?: return
+    Address().also {
+        it.city = "London"
+        it.street = "Baker Street"
+        it.house = "221b"
+    }.post(message3)
 
 }

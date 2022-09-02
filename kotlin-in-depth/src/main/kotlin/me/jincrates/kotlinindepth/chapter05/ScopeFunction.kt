@@ -48,6 +48,7 @@ fun main() {
     [with 함수]
     with 함수는 run()과 상당히 비슷하지만, 확장 함수 타입이 아니므로,
     문맥 식을 with의 첫 번째 인자로 전달해야 한다.
+    객체 타입의 중복 사용을 제거할 수 있다.
     */
     val message = with (Address(city = "London", street =  "Baker Street", house = "221b")) {
         "with(): Address: $city, $street, $house"
@@ -62,7 +63,7 @@ fun main() {
     let의 반환값은 람다가 반환하는 값과 같다.
     외부 영역에 새로운 변수를 도입하는 일을 피하고 싶을 때 주로 이 함수를 사용한다.
 
-     let의 일반적인 사용법 중에는 널이 될 수 있는 값을 안전성 검사를 거쳐서 널이 될 수 없는 함수에 전달하는 용법이 있다.
+     let은 지정된 값이 null이 아닌 경우에 코드를 싫행해야 한느 경우
      */
     Address(city = "London", street =  "Baker Street", house = "221b").let {
         //이 안에서는 it 파라미터를 통해 Address 인스턴스에 접근할 수 있음

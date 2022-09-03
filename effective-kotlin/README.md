@@ -1,4 +1,4 @@
-# 이펙티브 코틀린
+# 이펙티브 코틀린(Effective Kotlin)
 http://aladin.kr/p/Kf8R2
 - 저자: 마르친 모스칼라 (Marcin Moskala)
 - 역자: 윤인성

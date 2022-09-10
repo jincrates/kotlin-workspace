@@ -1,4 +1,4 @@
-package me.jincrates.kotlin200forbeginners.part04_kotlin_standard_library.ex135_kotlin_collection;
+package me.jincrates.kotlin200forbeginners.part04_kotlin_standard_library.ex135_collection;
 
 /*
 135. 코틀린의 컬렉션(Collection)

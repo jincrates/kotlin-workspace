@@ -1,9 +1,6 @@
 package me.jincrates.concurrencyproblems.service
 
 import me.jincrates.concurrencyproblems.domain.LectureReservation
-import me.jincrates.concurrencyproblems.facade.LettuceLockFacade
-import me.jincrates.concurrencyproblems.facade.OptimisticLockFacade
-import me.jincrates.concurrencyproblems.facade.RedissonLockFacade
 import me.jincrates.concurrencyproblems.repository.LectureReservationRepository
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -45,6 +42,21 @@ class LectureReservationServiceTest {
     }
 
     @Test
+    @DisplayName("순차적으로 100개 요청")
+    fun add_reservations_for() {
+        val MAX_COUNT = 100
+
+        for (i in 0 until MAX_COUNT) {
+            lectureReservationService.addReservations(1L, 1L)
+        }
+
+        // 예상: 1번씩 100개의 요청을 했으니, 현재 예약자 수는 100명일 것이다.
+        val lectureReservation = lectureReservationRepository.findByIdOrNull(1L)
+            ?: throw RuntimeException("예약정보를 찾을 수 없습니다.")
+        assertEquals(100L, lectureReservation.currentNumberOfReservations)
+    }
+
+    @Test
     @DisplayName("동시에 100개 요청 - 동시성 제어X")
     fun add_reservations_concurrency1() {
         val threadCount = 100
@@ -67,7 +79,8 @@ class LectureReservationServiceTest {
         latch.await()
 
         // 예상: 1번씩 100개의 요청을 했으니, 현재 예약자 수는 100명일 것이다.
-        val lectureReservation = lectureReservationRepository.findByIdOrNull(1L) ?: throw RuntimeException("예약정보를 찾을 수 없습니다.")
+        val lectureReservation = lectureReservationRepository.findByIdOrNull(1L)
+            ?: throw RuntimeException("예약정보를 찾을 수 없습니다.")
         assertEquals(100L, lectureReservation.currentNumberOfReservations)
 
         /*
